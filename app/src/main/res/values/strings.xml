@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">DaggerTestApp</string>
+
+    <string name="error_password_blank">Password is blank</string>
+    <string name="error_password_short">Password is too short</string>
+    <string name="error_password_long">Password is too long</string>
+    <string name="error_password_not_alphanumeric">Password is can only be alphanumeric</string>
+    <string name="error_email_blank">Email is blank</string>
+    <string name="error_email_not_email_pattern">Not a valid email</string>
+    <string name="user_not_found">User not found</string>
+    <string name="ok">OK</string>
+    <string name="error_title">Error</string>
+    <string name="welcome_message">Welcome, $1%s</string>
+</resources>
