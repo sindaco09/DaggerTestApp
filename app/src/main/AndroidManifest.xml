@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:name=".App"
         android:theme="@style/Theme.DaggerTestApp">
-        <activity android:name=".signup.SignupActivity" >
+        <activity android:name=".ui.screens.signup.SignUpActivity" />
+        <activity android:name=".ui.screens.login.LoginActivity" />
+        <activity android:name=".ui.screens.welcome.WelcomeActivity" />
+        <activity android:name=".ui.screens.landing.LandingActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

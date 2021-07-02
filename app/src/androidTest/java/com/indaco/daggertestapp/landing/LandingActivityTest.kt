@@ -2,7 +2,6 @@ package com.indaco.daggertestapp.landing
 
 import androidx.test.core.app.ActivityScenario
 import com.indaco.daggertestapp.di.DaggerTestInjector
-import com.indaco.daggertestapp.di.TestAppComponent
 import com.indaco.daggertestapp.ui.screens.landing.LandingActivity
 import de.mannodermaus.junit5.ActivityScenarioExtension
 import org.junit.jupiter.api.BeforeEach
@@ -17,21 +16,28 @@ class LandingActivityTest {
     @RegisterExtension
     val scenarioExtension = ActivityScenarioExtension.launch<LandingActivity>()
 
-    private lateinit var testAppComponent: TestAppComponent
-
     @BeforeEach
     fun setup() {
         DaggerTestInjector.getAppComponent()?.inject(this)
     }
 
     @Test
-    @DisplayName("Test if logged in")
+    @DisplayName("User not logged in")
+    fun isNotLoggedIn(scenario: ActivityScenario<LandingActivity>) {
+        scenario.onActivity {
+            val isLoggedIn = it.viewModel.isLoggedIn()
+
+            assertTrue({ return@assertTrue !isLoggedIn.first }, "should have been false" )
+        }
+    }
+
+    @Test
+    @DisplayName("User not logged in")
     fun isLoggedIn(scenario: ActivityScenario<LandingActivity>) {
         scenario.onActivity {
             val isLoggedIn = it.viewModel.isLoggedIn()
 
-            assertTrue({ return@assertTrue isLoggedIn.first }, "should have been false" )
+            assertTrue({ return@assertTrue !isLoggedIn.first }, "should have been false" )
         }
-
     }
 }
