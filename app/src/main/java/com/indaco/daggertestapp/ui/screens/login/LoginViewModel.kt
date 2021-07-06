@@ -7,12 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.indaco.daggertestapp.data.model.AuthForm
 import com.indaco.daggertestapp.data.repositories.UserRepository
 import com.indaco.daggertestapp.data.model.User
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class LoginViewModel @Inject constructor(
     private val repository: UserRepository,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO

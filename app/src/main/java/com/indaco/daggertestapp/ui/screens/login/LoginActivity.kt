@@ -3,19 +3,20 @@ package com.indaco.daggertestapp.ui.screens.login
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.indaco.daggertestapp.R
-import com.indaco.daggertestapp.core.di.DaggerInjector
 import com.indaco.daggertestapp.databinding.ActivityTestingBinding
 import com.indaco.daggertestapp.ui.base.Base
-import com.indaco.daggertestapp.data.model.AuthForm
 import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.ui.screens.welcome.WelcomeActivity
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class LoginActivity : Base<ActivityTestingBinding>() {
 
-    @Inject lateinit var viewModel: LoginViewModel
+    private val viewModel: LoginViewModel by viewModels()
 
     companion object {
         private const val MIN = 3
@@ -25,8 +26,6 @@ class LoginActivity : Base<ActivityTestingBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBindingContentView(ActivityTestingBinding.inflate(layoutInflater))
-
-        DaggerInjector.Instance.getAppComponent()!!.inject(this)
 
         init()
     }

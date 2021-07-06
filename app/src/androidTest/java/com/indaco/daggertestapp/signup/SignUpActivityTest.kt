@@ -1,12 +1,7 @@
 package com.indaco.daggertestapp.signup
 
-import com.indaco.daggertestapp.di.DaggerTestInjector
-import com.indaco.daggertestapp.ui.screens.signup.SignUpActivity
-import de.mannodermaus.junit5.ActivityScenarioExtension
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.RegisterExtension
-import javax.inject.Inject
+import org.junit.Before
+import org.junit.Test
 
 class SignupActivityTest {
 
@@ -24,13 +19,10 @@ class SignupActivityTest {
         var passedPWTests: Boolean = true
     }
 
-    @JvmField
-    @RegisterExtension
-    val scenarioExtension = ActivityScenarioExtension.launch<SignUpActivity>()
 
-    @BeforeEach
+    @Before
     fun setup() {
-        DaggerTestInjector.getAppComponent()?.inject(this)
+//        DaggerTestInjector.getAppComponent()?.inject(this)
     }
 
     @Test

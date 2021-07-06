@@ -3,7 +3,7 @@ package com.indaco.daggertestapp.ui.screens.signup
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import com.indaco.daggertestapp.core.di.DaggerInjector
+import androidx.activity.viewModels
 import com.indaco.daggertestapp.data.model.AuthForm
 import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.databinding.ActivitySignUpBinding
@@ -11,17 +11,17 @@ import com.indaco.daggertestapp.ui.base.Base
 import com.indaco.daggertestapp.ui.screens.welcome.WelcomeActivity
 import com.indaco.daggertestapp.util.Validator
 import com.indaco.daggertestapp.util.Validator.inputIsValid
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SignUpActivity : Base<ActivitySignUpBinding>() {
 
-    @Inject lateinit var viewModel: SignUpViewModel
+    private val viewModel: SignUpViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBindingContentView(ActivitySignUpBinding.inflate(layoutInflater))
-
-        DaggerInjector.Instance.getAppComponent()!!.inject(this)
 
         init()
     }

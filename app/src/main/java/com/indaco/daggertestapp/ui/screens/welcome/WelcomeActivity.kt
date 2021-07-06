@@ -2,25 +2,25 @@ package com.indaco.daggertestapp.ui.screens.welcome
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.indaco.daggertestapp.R
-import com.indaco.daggertestapp.core.di.DaggerInjector
 import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.databinding.ActivityWelcomeBinding
 import com.indaco.daggertestapp.ui.base.Base
 import com.indaco.daggertestapp.ui.screens.landing.LandingActivity
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class WelcomeActivity : Base<ActivityWelcomeBinding>() {
 
-    @Inject lateinit var viewModel: WelcomeViewModel
+    private val viewModel: WelcomeViewModel by viewModels()
 
     private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBindingContentView(ActivityWelcomeBinding.inflate(layoutInflater))
-
-        DaggerInjector.Instance.getAppComponent()!!.inject(this)
 
         init()
     }

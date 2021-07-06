@@ -1,11 +1,10 @@
 package com.indaco.daggertestapp
 
 import android.app.Application
-import com.indaco.daggertestapp.core.di.modules.AppModule
-import com.indaco.daggertestapp.core.di.AppComponent
-import com.indaco.daggertestapp.core.di.DaggerInjector
+import dagger.hilt.android.HiltAndroidApp
 
-class App: Application() {
+@HiltAndroidApp
+open class App: Application() {
 
     companion object {
         lateinit var instance: App
@@ -14,8 +13,5 @@ class App: Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-
-        DaggerInjector.Instance.setupDagger()
     }
-
 }

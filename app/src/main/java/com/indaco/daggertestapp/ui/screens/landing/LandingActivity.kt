@@ -2,25 +2,27 @@ package com.indaco.daggertestapp.ui.screens.landing
 
 import android.content.Intent
 import android.os.Bundle
-import com.indaco.daggertestapp.core.di.DaggerInjector
-import com.indaco.daggertestapp.data.model.AuthForm
+import androidx.activity.viewModels
+import com.indaco.daggertestapp.core.hilt.DebugAllOpen
 import com.indaco.daggertestapp.databinding.ActivityLandingBinding
 import com.indaco.daggertestapp.ui.base.Base
 import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.ui.screens.login.LoginActivity
 import com.indaco.daggertestapp.ui.screens.signup.SignUpActivity
 import com.indaco.daggertestapp.ui.screens.welcome.WelcomeActivity
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
+@DebugAllOpen
 class LandingActivity : Base<ActivityLandingBinding>() {
 
-    @Inject lateinit var viewModel: LandingViewModel
+    private val viewModel: LandingViewModel by viewModels()
+    private val something: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBindingContentView(ActivityLandingBinding.inflate(layoutInflater))
-
-        DaggerInjector.Instance.getAppComponent()!!.inject(this)
 
         init()
     }

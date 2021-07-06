@@ -1,43 +1,75 @@
 package com.indaco.daggertestapp.landing
 
-import androidx.test.core.app.ActivityScenario
-import com.indaco.daggertestapp.di.DaggerTestInjector
+import androidx.test.espresso.intent.Intents
+import androidx.test.espresso.intent.Intents.intended
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
+import androidx.test.ext.junit.rules.ActivityScenarioRule
+import com.google.common.truth.Truth
+import com.indaco.daggertestapp.data.model.User
+import com.indaco.daggertestapp.data.repositories.UserRepository
+import com.indaco.daggertestapp.data.storage.cache.UserCache
 import com.indaco.daggertestapp.ui.screens.landing.LandingActivity
-import de.mannodermaus.junit5.ActivityScenarioExtension
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.RegisterExtension
-import org.junit.jupiter.api.Assertions.assertTrue
+import com.indaco.daggertestapp.ui.screens.landing.LandingViewModel
+import com.indaco.daggertestapp.ui.screens.landing.LandingViewModel_Factory
+import com.indaco.daggertestapp.ui.screens.welcome.WelcomeActivity
+import dagger.hilt.android.testing.BindValue
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import org.junit.After
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 
+@HiltAndroidTest
 class LandingActivityTest {
 
-    @JvmField
-    @RegisterExtension
-    val scenarioExtension = ActivityScenarioExtension.launch<LandingActivity>()
+    companion object {
+        private const val EMAIL_VALID = "test@gmail.com"
+    }
 
-    @BeforeEach
+    @get: Rule(order = 0)
+    var hiltRule = HiltAndroidRule(this)
+
+    // Rule represents an Activity in this case (renamed to ActivityScenarioExtension in JUnit5)
+    @get: Rule(order = 1)
+    var scenarioRule = ActivityScenarioRule(LandingActivity::class.java)
+
+    @BindValue @Mock
+    lateinit var userCache: UserCache
+
+    @Before
     fun setup() {
-        DaggerTestInjector.getAppComponent()?.inject(this)
+        hiltRule.inject()
+        Intents.init()
+    }
+
+    @After
+    fun tearDown() {
+        Intents.release()
     }
 
     @Test
-    @DisplayName("User not logged in")
-    fun isNotLoggedIn(scenario: ActivityScenario<LandingActivity>) {
-        scenario.onActivity {
-            val isLoggedIn = it.viewModel.isLoggedIn()
-
-            assertTrue({ return@assertTrue !isLoggedIn.first }, "should have been false" )
+    fun isNotLoggedIn() {
+        `when`(userCache.currentUser).thenReturn(null)
+//        `when`(landingViewModel.isLoggedIn()).thenReturn(Pair(false, null))
+        scenarioRule.scenario.onActivity {
+//            val isLoggedIn = landingViewModel.isLoggedIn()
+//            Truth.assertThat(isLoggedIn)
         }
     }
 
     @Test
-    @DisplayName("User not logged in")
-    fun isLoggedIn(scenario: ActivityScenario<LandingActivity>) {
-        scenario.onActivity {
-            val isLoggedIn = it.viewModel.isLoggedIn()
+    fun isLoggedIn() {
+        `when`(userCache.currentUser).thenReturn(User(EMAIL_VALID))
+//        `when`(landingViewModel.isLoggedIn()).thenReturn(Pair(true, User(EMAIL_VALID)))
+        scenarioRule.scenario.onActivity {
+//            val isLoggedIn = landingViewModel.isLoggedIn()
+//            Truth.assertThat(isLoggedIn)
 
-            assertTrue({ return@assertTrue !isLoggedIn.first }, "should have been false" )
+            intended(hasComponent(WelcomeActivity::class.qualifiedName))
         }
     }
 }

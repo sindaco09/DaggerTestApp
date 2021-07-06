@@ -2,11 +2,13 @@ package com.indaco.daggertestapp.data.storage.cache
 
 import android.content.SharedPreferences
 import androidx.annotation.WorkerThread
+import com.indaco.daggertestapp.core.hilt.DebugAllOpen
 import com.indaco.daggertestapp.data.storage.dao.UserDao
 import com.indaco.daggertestapp.data.model.User
 import javax.inject.Inject
 import javax.inject.Singleton
 
+@DebugAllOpen
 @Singleton
 class UserCache @Inject constructor(
     private val userDao: UserDao,

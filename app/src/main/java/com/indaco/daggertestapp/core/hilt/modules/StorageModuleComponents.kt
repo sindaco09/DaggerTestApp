@@ -1,13 +1,15 @@
-package com.indaco.daggertestapp.core.di.modules
+package com.indaco.daggertestapp.core.hilt.modules
 
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
-import com.indaco.daggertestapp.core.di.DebugAllOpen
+import com.indaco.daggertestapp.core.hilt.DebugAllOpen
 import com.indaco.daggertestapp.core.room.AppDatabase
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
@@ -18,6 +20,7 @@ import javax.inject.Singleton
  */
 @DebugAllOpen
 @Module
+@InstallIn(SingletonComponent::class)
 class StorageModuleComponents {
 
     companion object {
