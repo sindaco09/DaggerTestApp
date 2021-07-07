@@ -16,7 +16,7 @@ class UserCache @Inject constructor(
 ) {
 
     companion object {
-        private const val KEY_CURRENT_USER = "current_user"
+        const val KEY_CURRENT_USER = "current_user"
     }
 
     @WorkerThread

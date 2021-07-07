@@ -18,7 +18,7 @@ import javax.inject.Inject
 class LandingActivity : Base<ActivityLandingBinding>() {
 
     private val viewModel: LandingViewModel by viewModels()
-    private val something: String = ""
+    private var something: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,13 @@ class LandingActivity : Base<ActivityLandingBinding>() {
     private fun init() {
         initView()
 
-        checkIfLoggedIn()
+//        checkIfLoggedIn()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        startActivity(Intent(this, WelcomeActivity::class.java)
+            .putExtra(User.KEY, User("email@email.gom")))
     }
 
     private fun checkIfLoggedIn() =
@@ -38,7 +44,7 @@ class LandingActivity : Base<ActivityLandingBinding>() {
 
     private fun goToWelcomeScreen(user: User) =
         startActivity(Intent(this, WelcomeActivity::class.java)
-            .putExtra(User.KEY, user.toLoginUser()))
+            .putExtra(User.KEY, user))
 
     private fun initView() =
         with(binding) {
