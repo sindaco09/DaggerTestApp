@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.hilt.modules.storagecomponents
+package com.indaco.daggertestapp.data.storagecomponents
 
 import android.content.SharedPreferences
 import com.indaco.daggertestapp.core.hilt.modules.CacheModule

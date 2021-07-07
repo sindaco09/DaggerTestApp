@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.hilt.modules.storagecomponents
+package com.indaco.daggertestapp.data.storagecomponents
 
 import android.app.Application
 import androidx.room.Room

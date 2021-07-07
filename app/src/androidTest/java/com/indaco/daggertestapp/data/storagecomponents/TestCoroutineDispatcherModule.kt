@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.hilt.modules.storagecomponents
+package com.indaco.daggertestapp.data.storagecomponents
 
 import com.indaco.daggertestapp.core.hilt.modules.storagecomponents.CoroutineDispatcherModule
 import dagger.Module

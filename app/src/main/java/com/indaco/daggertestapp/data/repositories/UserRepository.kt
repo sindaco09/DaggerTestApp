@@ -32,4 +32,5 @@ class UserRepository @Inject constructor(private val userCache: UserCache) {
         userCache.currentUser = null
     }
 
+    fun getTestValue() = userCache.testValue
 }

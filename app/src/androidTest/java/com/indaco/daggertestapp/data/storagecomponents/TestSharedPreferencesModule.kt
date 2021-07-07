@@ -1,17 +1,4 @@
-package com.indaco.daggertestapp.hilt.modules.storagecomponents
-
-import android.app.Application
-import android.content.Context
-import android.content.SharedPreferences
-import com.indaco.daggertestapp.core.hilt.modules.storagecomponents.SharedPreferencesModule
-import dagger.Binds
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import dagger.hilt.testing.TestInstallIn
-import javax.inject.Inject
-import javax.inject.Singleton
+package com.indaco.daggertestapp.data.storagecomponents
 
 //@Module
 //@TestInstallIn(

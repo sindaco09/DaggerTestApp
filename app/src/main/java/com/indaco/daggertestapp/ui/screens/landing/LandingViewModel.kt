@@ -15,4 +15,6 @@ class LandingViewModel @Inject constructor(
     fun isLoggedIn(): Pair<Boolean, User?> {
         return repository.loggedInUser.let { Pair(it != null, it) }
     }
+
+    fun getTestValue() = repository.getTestValue()
 }

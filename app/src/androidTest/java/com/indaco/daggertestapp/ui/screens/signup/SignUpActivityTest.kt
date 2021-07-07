@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.signup
+package com.indaco.daggertestapp.ui.screens.signup
 
 import org.junit.Before
 import org.junit.Test

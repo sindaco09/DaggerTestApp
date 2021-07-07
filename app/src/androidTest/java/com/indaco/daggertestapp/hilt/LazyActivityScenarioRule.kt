@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp
+package com.indaco.daggertestapp.hilt
 
 import android.app.Activity
 import android.content.Intent

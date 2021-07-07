@@ -36,4 +36,6 @@ class UserCache @Inject constructor(
         set(value) {
             field = value.also { sp.edit().putString(KEY_CURRENT_USER, it?.email).apply() }
         }
+
+    var testValue: Boolean = true
 }

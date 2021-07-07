@@ -3,6 +3,7 @@ package com.indaco.daggertestapp.ui.screens.landing
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.hilt.DebugAllOpen
 import com.indaco.daggertestapp.databinding.ActivityLandingBinding
 import com.indaco.daggertestapp.ui.base.Base
@@ -18,7 +19,6 @@ import javax.inject.Inject
 class LandingActivity : Base<ActivityLandingBinding>() {
 
     private val viewModel: LandingViewModel by viewModels()
-    private var something: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,17 +30,28 @@ class LandingActivity : Base<ActivityLandingBinding>() {
     private fun init() {
         initView()
 
-//        checkIfLoggedIn()
+        checkIfLoggedIn()
+
+        checkTestValue()
     }
 
-    override fun onStart() {
-        super.onStart()
-        startActivity(Intent(this, WelcomeActivity::class.java)
-            .putExtra(User.KEY, User("email@email.gom")))
+    private fun checkTestValue() {
+        if (viewModel.getTestValue())
+            binding.testValue.text = getString(R.string.test_value_true)
+        else
+            binding.testValue.text = getString(R.string.test_value_false)
+
     }
 
     private fun checkIfLoggedIn() =
-        with(viewModel.isLoggedIn()) { if (first) goToWelcomeScreen(second!!) }
+        with(viewModel.isLoggedIn()) {
+            if (first) {
+                binding.loginStatus.text = getString(R.string.login_status_success)
+                goToWelcomeScreen(second!!)
+            } else {
+                binding.loginStatus.text = getString(R.string.login_status_false)
+            }
+        }
 
     private fun goToWelcomeScreen(user: User) =
         startActivity(Intent(this, WelcomeActivity::class.java)

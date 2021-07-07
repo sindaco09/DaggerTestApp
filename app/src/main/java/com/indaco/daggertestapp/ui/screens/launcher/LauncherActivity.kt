@@ -9,6 +9,6 @@ class LauncherActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        startActivity(Intent(this, EmptyActivity::class.java))
+        startActivity(Intent(this, LandingActivity::class.java))
     }
 }
