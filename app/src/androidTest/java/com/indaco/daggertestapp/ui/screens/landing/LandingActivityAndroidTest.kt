@@ -32,7 +32,7 @@ import kotlin.test.assertEquals
 
 @UninstallModules(CacheModule::class)
 @HiltAndroidTest
-class LandingActivityTest {
+class LandingActivityAndroidTest {
 
     companion object {
         private const val EMAIL_VALID = "test@gmail.com"
