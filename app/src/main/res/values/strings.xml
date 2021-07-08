@@ -10,7 +10,7 @@
     <string name="user_not_found">User not found</string>
     <string name="ok">OK</string>
     <string name="error_title">Error</string>
-    <string name="welcome_message">Welcome, $1%s</string>
+    <string name="welcome_message">Welcome, %s</string>
     <string name="login_status_checking">Status: Checking…</string>
     <string name="login_status_false">Status: User not logged in</string>
     <string name="login_status_success">Status: User logged in</string>

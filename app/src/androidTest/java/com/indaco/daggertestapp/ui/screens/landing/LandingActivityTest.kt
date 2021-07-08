@@ -2,9 +2,7 @@ package com.indaco.daggertestapp.ui.screens.landing
 
 import android.content.Intent
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.intended
@@ -23,6 +21,7 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.spyk
 import io.mockk.verify
 import org.junit.After
 import org.junit.Before
@@ -57,7 +56,7 @@ class LandingActivityTest {
     }
 
     // Needed AFTER Intents.init() but before the test. apply any `every` statements here
-    private fun launchWithHilt(everyFunc: (() -> Unit)? = null) {
+    private fun launchHiltActivityWithMocks(everyFunc: (() -> Unit)? = null) {
         everyFunc?.invoke()
         hiltRule.inject()
         scenarioRule.launch(intent)
@@ -70,17 +69,17 @@ class LandingActivityTest {
 
     @Test
     fun test_value_true() {
-        launchWithHilt { every { mockUserCache.testValue } returns true }
+        launchHiltActivityWithMocks { every { mockUserCache.testValue } returns true }
 
         scenarioRule.getScenario().onActivity {
-            assertEquals(expected =it.getString(R.string.test_value_true),
-                actual =it.binding.testValue.text.toString())
+            assertEquals(expected = it.getString(R.string.test_value_true),
+                actual = it.binding.testValue.text.toString())
         }
     }
 
     @Test
     fun test_value_false() {
-        launchWithHilt { every { mockUserCache.testValue } returns false }
+        launchHiltActivityWithMocks { every { mockUserCache.testValue } returns false }
 
         scenarioRule.getScenario().onActivity {
             assertEquals(expected = it.getString(R.string.test_value_false),
@@ -90,7 +89,7 @@ class LandingActivityTest {
 
     @Test
     fun isNotLoggedIn() {
-        launchWithHilt { every { mockUserCache.currentUser } returns null }
+        launchHiltActivityWithMocks { every { mockUserCache.currentUser } returns null }
 
         // Can access bindings via scenario
         scenarioRule.getScenario().onActivity {
@@ -101,12 +100,15 @@ class LandingActivityTest {
 
     @Test
     fun isLoggedIn() {
-        launchWithHilt { every { mockUserCache.currentUser } returns User(EMAIL_VALID) }
+        launchHiltActivityWithMocks { every { mockUserCache.currentUser } returns User(EMAIL_VALID) }
 
         // Using Espresso
         onView(withId(R.id.login_status))
             .check(matches(withText(R.string.login_status_success)))
 
-        intended(hasComponent(WelcomeActivity::class.java.name))
+        scenarioRule.getScenario().onActivity {
+            verify { it.goToWelcomeScreen(User(EMAIL_VALID)) }
+        }
+//        intended(hasComponent(WelcomeActivity::class.java.name))
     }
 }

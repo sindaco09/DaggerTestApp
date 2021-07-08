@@ -53,7 +53,7 @@ class LandingActivity : Base<ActivityLandingBinding>() {
             }
         }
 
-    private fun goToWelcomeScreen(user: User) =
+    fun goToWelcomeScreen(user: User) =
         startActivity(Intent(this, WelcomeActivity::class.java)
             .putExtra(User.KEY, user))
 

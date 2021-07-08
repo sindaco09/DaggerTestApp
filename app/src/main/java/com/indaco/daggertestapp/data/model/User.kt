@@ -7,11 +7,7 @@ import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "users")
 @Parcelize
-data class User(@PrimaryKey val email: String): Parcelable {
-    fun toLoginUser(): AuthForm {
-        return AuthForm(email,"")
-    }
-
+data class User(@PrimaryKey var email: String): Parcelable {
     companion object {
         const val KEY = "key_user"
     }
