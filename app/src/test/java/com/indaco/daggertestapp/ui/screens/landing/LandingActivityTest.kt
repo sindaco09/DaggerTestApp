@@ -7,6 +7,7 @@ import com.google.common.truth.Truth.assertThat
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.hilt.modules.CacheModule
 import com.indaco.daggertestapp.data.model.User
+import com.indaco.daggertestapp.data.repositories.UserRepository
 import com.indaco.daggertestapp.data.storage.cache.UserCache
 import com.indaco.daggertestapp.ui.screens.lazyActivityScenarioRule
 import com.indaco.daggertestapp.ui.screens.welcome.WelcomeActivity
@@ -23,32 +24,26 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows
 
-@UninstallModules(CacheModule::class)
 @RunWith(RobolectricTestRunner::class)
-@HiltAndroidTest
 class LandingActivityTest {
 
     private val intent = Intent(ApplicationProvider.getApplicationContext(), LandingActivity::class.java)
 
     @BindValue
     @JvmField
-    var mockUserCache: UserCache = mockk(relaxed = true)
+    var mockRepository: UserRepository = mockk(relaxed = true)
 
-    @get: Rule(order = 0)
-    val hiltRule = HiltAndroidRule(this)
-
-    @get: Rule(order = 1)
+    @get: Rule
     val scenarioRule = lazyActivityScenarioRule<LandingActivity>(launchActivity = false)
 
     private fun launchWithHilt(everyFunc: (() -> Unit)? = null) {
         everyFunc?.invoke()
-        hiltRule.inject()
         scenarioRule.launch(intent)
     }
 
     @Test
     fun test_value_true() {
-        launchWithHilt { every { mockUserCache.testValue } returns true }
+        launchWithHilt { every { mockRepository.getTestValue() } returns true }
 
         scenarioRule.getScenario().onActivity {
             assertThat(it.binding.testValue.text.toString())
@@ -58,7 +53,7 @@ class LandingActivityTest {
 
     @Test
     fun test_value_false() {
-        launchWithHilt { every { mockUserCache.testValue } returns false }
+        launchWithHilt { every { mockRepository.getTestValue() } returns false }
 
         scenarioRule.getScenario().onActivity {
             assertThat(it.binding.testValue.text.toString())
@@ -68,7 +63,7 @@ class LandingActivityTest {
 
     @Test
     fun isNotLoggedIn() {
-        launchWithHilt { every { mockUserCache.currentUser } returns null }
+        launchWithHilt { every { mockRepository.loggedInUser } returns null }
 
         // Can access bindings via scenario
         scenarioRule.getScenario().onActivity {
@@ -79,7 +74,7 @@ class LandingActivityTest {
 
     @Test
     fun isLoggedIn() {
-        launchWithHilt { every { mockUserCache.currentUser } returns User("email@gmail.com") }
+        launchWithHilt { every { mockRepository.loggedInUser } returns User("email@gmail.com") }
 
         scenarioRule.getScenario().onActivity {
             assertThat(it.binding.loginStatus.text.toString())
@@ -90,7 +85,7 @@ class LandingActivityTest {
 
     @Test
     fun isLoggedInStartActivity() {
-        launchWithHilt { every { mockUserCache.currentUser } returns User("email@gmail.com") }
+        launchWithHilt { every { mockRepository.loggedInUser } returns User("email@gmail.com") }
 
         scenarioRule.getScenario().onActivity {
             val expectedIntent = Intent(it, WelcomeActivity::class.java)
