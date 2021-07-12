@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.ui.screens.landing
+package com.indaco.daggertestapp.ui.screens.onboarding.landing
 
 import androidx.lifecycle.ViewModel
 import com.indaco.daggertestapp.data.repositories.UserRepository

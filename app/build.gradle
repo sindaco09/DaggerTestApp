@@ -110,6 +110,7 @@ dependencies {
     // for testing kotlin coroutines, includes TestCoroutingDispatcher()
     implementation "androidx.test:core-ktx:1.3.0"
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0'
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
     androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0'
     androidTestImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 }

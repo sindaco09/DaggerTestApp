@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.ui.screens.signup
+package com.indaco.daggertestapp.ui.screens.onboarding.signup
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,11 +8,10 @@ import com.indaco.daggertestapp.data.model.AuthForm
 import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.databinding.ActivitySignUpBinding
 import com.indaco.daggertestapp.ui.base.Base
-import com.indaco.daggertestapp.ui.screens.welcome.WelcomeActivity
+import com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity
 import com.indaco.daggertestapp.util.Validator
 import com.indaco.daggertestapp.util.Validator.inputIsValid
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class SignUpActivity : Base<ActivitySignUpBinding>() {

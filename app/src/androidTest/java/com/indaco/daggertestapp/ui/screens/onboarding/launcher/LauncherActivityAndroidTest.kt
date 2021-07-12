@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.ui.screens.launcher
+package com.indaco.daggertestapp.ui.screens.onboarding.launcher
 
 import android.content.Intent
 import androidx.test.core.app.ApplicationProvider

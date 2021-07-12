@@ -1,29 +1,24 @@
-package com.indaco.daggertestapp.ui.screens.landing
+package com.indaco.daggertestapp.ui.screens.onboarding.landing
 
 import android.content.Intent
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.filters.SmallTest
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.hilt.modules.CacheModule
 import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.data.storage.cache.UserCache
 import com.indaco.daggertestapp.hilt.lazyActivityScenarioRule
-import com.indaco.daggertestapp.ui.screens.welcome.WelcomeActivity
+import com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity
+import com.indaco.daggertestapp.util.Const.EMAIL_VALID
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.spyk
-import io.mockk.verify
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -37,10 +32,6 @@ import kotlin.test.assertEquals
 @HiltAndroidTest
 @SmallTest
 class LandingActivityAndroidTest {
-
-    companion object {
-        private const val EMAIL_VALID = "test@gmail.com"
-    }
 
     private val intent = Intent(ApplicationProvider.getApplicationContext(), LandingActivity::class.java)
 
@@ -59,6 +50,9 @@ class LandingActivityAndroidTest {
     @Before
     fun setup() {
         Intents.init()
+
+        // I want current user to always return null in this specific test
+        // unless explicitly testing it
         every { mockUserCache.currentUser } returns null
     }
 

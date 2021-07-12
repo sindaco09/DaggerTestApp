@@ -1,18 +1,16 @@
-package com.indaco.daggertestapp.ui.screens.landing
+package com.indaco.daggertestapp.ui.screens.onboarding.landing
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.indaco.daggertestapp.R
-import com.indaco.daggertestapp.core.hilt.DebugAllOpen
 import com.indaco.daggertestapp.databinding.ActivityLandingBinding
 import com.indaco.daggertestapp.ui.base.Base
 import com.indaco.daggertestapp.data.model.User
-import com.indaco.daggertestapp.ui.screens.login.LoginActivity
-import com.indaco.daggertestapp.ui.screens.signup.SignUpActivity
-import com.indaco.daggertestapp.ui.screens.welcome.WelcomeActivity
+import com.indaco.daggertestapp.ui.screens.onboarding.login.LoginActivity
+import com.indaco.daggertestapp.ui.screens.onboarding.signup.SignUpActivity
+import com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 /*
  * Hilt Activity to test:

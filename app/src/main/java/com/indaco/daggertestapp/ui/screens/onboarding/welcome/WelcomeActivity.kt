@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.ui.screens.welcome
+package com.indaco.daggertestapp.ui.screens.onboarding.welcome
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,8 @@ import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.databinding.ActivityWelcomeBinding
 import com.indaco.daggertestapp.ui.base.Base
-import com.indaco.daggertestapp.ui.screens.landing.LandingActivity
+import com.indaco.daggertestapp.ui.screens.onboarding.landing.LandingActivity
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 /*
  * Testing

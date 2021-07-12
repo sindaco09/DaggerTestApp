@@ -1,12 +1,12 @@
-package com.indaco.daggertestapp.ui.screens.signup
+package com.indaco.daggertestapp.ui.screens.onboarding.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.indaco.daggertestapp.data.model.AuthForm
-import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.data.repositories.UserRepository
+import com.indaco.daggertestapp.data.model.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -15,19 +15,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor(
-    private val userRepository: UserRepository,
+class LoginViewModel @Inject constructor(
+    private val repository: UserRepository,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ): ViewModel() {
 
-    private val _registerResult = MutableLiveData<User?>()
-    val registerResult: LiveData<User?> = _registerResult
+    private var _loginResult = MutableLiveData<User?>()
+    val loginResult: LiveData<User?> get() = _loginResult
 
-    fun register(authForm: AuthForm) {
+    fun login(email: String, password: String) {
         viewModelScope.launch(dispatcher) {
-            userRepository.register(authForm.toUser()).collect {
-                _registerResult.postValue(it)
-            }
+            repository.login(AuthForm(email, password))
+                .collect { _loginResult.postValue(it) }
         }
     }
 }

@@ -1,8 +1,8 @@
-package com.indaco.daggertestapp.ui.screens.launcher
+package com.indaco.daggertestapp.ui.screens.onboarding.launcher
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
-import com.indaco.daggertestapp.ui.screens.landing.LandingActivity
+import com.indaco.daggertestapp.ui.screens.onboarding.landing.LandingActivity
 
 /*
  * Non-Hilt Activity to demo testing Capturing intent starting LandingActivity
