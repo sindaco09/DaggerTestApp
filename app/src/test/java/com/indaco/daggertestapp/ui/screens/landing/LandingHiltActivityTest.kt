@@ -25,7 +25,8 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows
 
 @RunWith(RobolectricTestRunner::class)
-class LandingActivityTest {
+@HiltAndroidTest
+class LandingHiltActivityTest {
 
     private val intent = Intent(ApplicationProvider.getApplicationContext(), LandingActivity::class.java)
 
