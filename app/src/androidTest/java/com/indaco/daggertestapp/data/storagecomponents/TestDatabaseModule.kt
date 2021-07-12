@@ -10,6 +10,9 @@ import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import javax.inject.Singleton
 
+/*
+ * replace DB_FILE with DB_TEST_FILE
+ */
 @Module
 @TestInstallIn(
     components = [SingletonComponent::class],

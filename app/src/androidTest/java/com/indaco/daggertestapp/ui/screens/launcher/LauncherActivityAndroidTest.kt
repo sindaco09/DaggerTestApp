@@ -11,7 +11,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class LauncherActivityTest {
+class LauncherActivityAndroidTest {
 
     private val intent = Intent(ApplicationProvider.getApplicationContext(), LauncherActivity::class.java)
 

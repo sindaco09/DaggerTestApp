@@ -14,8 +14,12 @@ import com.indaco.daggertestapp.ui.screens.welcome.WelcomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+/*
+ * Hilt Activity to test:
+ * + read values from Cache
+ * + capture intent when going to another activity
+ */
 @AndroidEntryPoint
-@DebugAllOpen
 class LandingActivity : Base<ActivityLandingBinding>() {
 
     private val viewModel: LandingViewModel by viewModels()
@@ -40,7 +44,6 @@ class LandingActivity : Base<ActivityLandingBinding>() {
             binding.testValue.text = getString(R.string.test_value_true)
         else
             binding.testValue.text = getString(R.string.test_value_false)
-
     }
 
     private fun checkIfLoggedIn() =

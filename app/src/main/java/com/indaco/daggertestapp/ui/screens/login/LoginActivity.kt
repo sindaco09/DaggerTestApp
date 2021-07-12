@@ -13,6 +13,11 @@ import com.indaco.daggertestapp.ui.screens.welcome.WelcomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+/*
+ * Hilt Activity to test:
+ * + read values from Cache
+ * + capture intent when going to another activity
+ */
 @AndroidEntryPoint
 class LoginActivity : Base<ActivityTestingBinding>() {
 

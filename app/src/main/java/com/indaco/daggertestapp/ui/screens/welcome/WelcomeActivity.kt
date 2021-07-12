@@ -11,6 +11,11 @@ import com.indaco.daggertestapp.ui.screens.landing.LandingActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+/*
+ * Testing
+ * + data passed via intent
+ * + UI
+ */
 @AndroidEntryPoint
 class WelcomeActivity : Base<ActivityWelcomeBinding>() {
 

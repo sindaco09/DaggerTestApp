@@ -5,6 +5,10 @@ import android.content.Intent
 import androidx.test.core.app.ActivityScenario
 import org.junit.rules.ExternalResource
 
+/*
+ * This class allows for me to launch the activity when i choose to in case i need to track events
+ * like Intents
+ */
 class LazyActivityScenarioRule<A : Activity> : ExternalResource {
 
     constructor(launchActivity: Boolean, startActivityIntentSupplier: () -> Intent) {

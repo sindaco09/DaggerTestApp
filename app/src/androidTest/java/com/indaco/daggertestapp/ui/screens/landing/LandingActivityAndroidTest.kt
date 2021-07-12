@@ -9,6 +9,7 @@ import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.filters.SmallTest
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.hilt.modules.CacheModule
 import com.indaco.daggertestapp.data.model.User
@@ -29,9 +30,13 @@ import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
 
+/* CacheModule is uninstalled and replaced with mock via @BindValue to manipulate data
+ * received by activity
+ */
 @UninstallModules(CacheModule::class)
 @HiltAndroidTest
-class LandingActivityTest {
+@SmallTest
+class LandingActivityAndroidTest {
 
     companion object {
         private const val EMAIL_VALID = "test@gmail.com"
@@ -39,6 +44,7 @@ class LandingActivityTest {
 
     private val intent = Intent(ApplicationProvider.getApplicationContext(), LandingActivity::class.java)
 
+    // It is easier to mock data source than the viewmodel
     @BindValue
     @JvmField
     var mockUserCache: UserCache = mockk(relaxed = true)
@@ -53,9 +59,10 @@ class LandingActivityTest {
     @Before
     fun setup() {
         Intents.init()
+        every { mockUserCache.currentUser } returns null
     }
 
-    // Needed AFTER Intents.init() but before the test. apply any `every` statements here
+    // Needed AFTER Intents.init() but before the test. apply any 'every' statements here
     private fun launchHiltActivityWithMocks(everyFunc: (() -> Unit)? = null) {
         everyFunc?.invoke()
         hiltRule.inject()
@@ -102,14 +109,16 @@ class LandingActivityTest {
     fun isLoggedIn() {
         launchHiltActivityWithMocks { every { mockUserCache.currentUser } returns User(EMAIL_VALID) }
 
-        // Using Espresso
-        onView(withId(R.id.login_status))
-            .check(matches(withText(R.string.login_status_success)))
+        scenarioRule.getScenario().onActivity {
+            assertEquals(expected = it.getString(R.string.login_status_success),
+                actual = it.binding.loginStatus.text.toString())
+        }
+    }
 
-        // This isn't working properly
-//        scenarioRule.getScenario().onActivity {
-//            verify { it.goToWelcomeScreen(User(EMAIL_VALID)) }
-//        }
-//        intended(hasComponent(WelcomeActivity::class.java.name))
+    @Test
+    fun goToWelcomeScreen() {
+        launchHiltActivityWithMocks { every { mockUserCache.currentUser } returns User(EMAIL_VALID) }
+
+        intended(hasComponent(WelcomeActivity::class.java.name))
     }
 }
