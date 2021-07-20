@@ -23,4 +23,5 @@
     <string name="email_hint">Email</string>
     <string name="login">Login</string>
     <string name="register">register</string>
+    <string name="error_email_in_use">Email in use</string>
 </resources>
