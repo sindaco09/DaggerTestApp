@@ -23,7 +23,7 @@ object Validator {
         Log.d("TAG","isEmailEntryValid: $email")
 
         val message =  when {
-            email.isNullOrBlank() -> context.getString(R.string.error_email_blank)
+            email.isBlank() -> context.getString(R.string.error_email_blank)
             email.isEmailInvalid() -> context.getString(R.string.error_email_not_email_pattern)
             else ->  null
         }
@@ -39,7 +39,7 @@ object Validator {
         Log.d("TAG","isPasswordValid: $password")
 
         val message =  when {
-            password.isNullOrBlank() -> context.getString(R.string.error_password_blank)
+            password.isBlank() -> context.getString(R.string.error_password_blank)
             password.length < PASSWORD_MIN -> context.getString(R.string.error_password_short)
             password.length > PASSWORD_MAX -> context.getString(R.string.error_password_long)
             password.any { !it.isLetterOrDigit() } -> context.getString(R.string.error_password_not_alphanumeric)
@@ -48,5 +48,20 @@ object Validator {
 
         error = message
         return message == null
+    }
+
+    fun TextInputLayout.matches(type: Type, otherField: String): Boolean {
+        val field = editText?.text.toString()
+        val fieldsMatch = field == otherField
+        return if (fieldsMatch) {
+            error = null
+            true
+        } else {
+            error = when (type) {
+                Type.PASSWORD -> context.getString(R.string.error_passwords_dont_match)
+                Type.EMAIL -> context.getString(R.string.error_emails_dont_match)
+            }
+            false
+        }
     }
 }

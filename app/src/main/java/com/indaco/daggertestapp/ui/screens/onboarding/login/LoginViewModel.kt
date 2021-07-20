@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.indaco.daggertestapp.data.model.AuthForm
-import com.indaco.daggertestapp.data.repositories.UserRepository
 import com.indaco.daggertestapp.data.model.User
+import com.indaco.daggertestapp.data.repositories.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -25,7 +24,7 @@ class LoginViewModel @Inject constructor(
 
     fun login(email: String, password: String) {
         viewModelScope.launch(dispatcher) {
-            repository.login(AuthForm(email, password))
+            repository.login(email, password)
                 .collect { _loginResult.postValue(it) }
         }
     }

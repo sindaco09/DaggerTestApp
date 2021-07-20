@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.databinding.ActivityWelcomeBinding
-import com.indaco.daggertestapp.ui.base.Base
+import com.indaco.daggertestapp.ui.base.BaseActivity
 import com.indaco.daggertestapp.ui.screens.onboarding.landing.LandingActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * + UI
  */
 @AndroidEntryPoint
-class WelcomeActivity : Base<ActivityWelcomeBinding>() {
+class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>() {
 
     private val viewModel: WelcomeViewModel by viewModels()
 

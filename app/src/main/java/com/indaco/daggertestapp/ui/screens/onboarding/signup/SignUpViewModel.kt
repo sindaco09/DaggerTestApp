@@ -10,6 +10,8 @@ import com.indaco.daggertestapp.data.repositories.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,14 +22,47 @@ class SignUpViewModel @Inject constructor(
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ): ViewModel() {
 
-    private val _registerResult = MutableLiveData<User?>()
-    val registerResult: LiveData<User?> = _registerResult
+    enum class State {SHOW_EMAIL, SHOW_PASSWORD, SHOW_REGISTER_BUTTON}
 
-    fun register(authForm: AuthForm) {
+    private val _state = MutableStateFlow(State.SHOW_EMAIL)
+    val state: StateFlow<State> get() = _state
+
+    private val _registerResult = MutableLiveData<User?>()
+    val registerResult: LiveData<User?> get() = _registerResult
+
+    private val _emailInUse = MutableLiveData<Pair<Boolean, String?>>()
+    val emailInUse: LiveData<Pair<Boolean, String?>> get() = _emailInUse
+
+    private var authForm: AuthForm = AuthForm()
+
+    fun register() {
         viewModelScope.launch(dispatcher) {
-            userRepository.register(authForm.toUser()).collect {
+            userRepository.register(User(authForm.email)).collect {
                 _registerResult.postValue(it)
             }
+        }
+    }
+
+    fun checkIfEmailInUse(email: String) {
+        viewModelScope.launch(dispatcher) {
+            userRepository.isEmailInUse(email).collect {
+                if (!it)
+                    authForm.email = email
+
+                _emailInUse.postValue(Pair(it, if (it) "email in use" else null))
+            }
+        }
+    }
+
+    fun addPassword(password: String, confirmPassword: String) {
+        authForm.password = password
+        authForm.confirmPassword = confirmPassword
+    }
+
+    fun changeState(s: State) {
+        viewModelScope.launch(dispatcher) {
+            if (_state.value.ordinal < s.ordinal)
+                _state.emit(s)
         }
     }
 }

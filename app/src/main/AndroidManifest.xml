@@ -10,18 +10,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DaggerTestApp">
-        <activity android:name="com.indaco.daggertestapp.ui.screens.onboarding.launcher.EmptyActivity"></activity>
-        <activity android:name="com.indaco.daggertestapp.ui.screens.onboarding.launcher.LauncherActivity">
+        <activity android:name=".ui.screens.onboarding.signup.SignUpParentActivity"></activity>
+        <activity android:name=".ui.screens.onboarding.launcher.EmptyActivity" />
+        <activity android:name=".ui.screens.onboarding.launcher.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.indaco.daggertestapp.ui.screens.onboarding.signup.SignUpActivity" />
-        <activity android:name="com.indaco.daggertestapp.ui.screens.onboarding.login.LoginActivity" />
-        <activity android:name="com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity" />
-        <activity android:name="com.indaco.daggertestapp.ui.screens.onboarding.landing.LandingActivity" />
+        <activity android:name=".ui.screens.onboarding.signup.simplesignup.SimpleSignUpActivity" />
+        <activity android:name=".ui.screens.onboarding.login.LoginActivity" />
+        <activity android:name=".ui.screens.onboarding.welcome.WelcomeActivity" />
+        <activity android:name=".ui.screens.onboarding.landing.LandingActivity" />
     </application>
 
 </manifest>

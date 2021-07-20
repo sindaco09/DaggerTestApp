@@ -6,10 +6,9 @@ import android.text.TextUtils
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.indaco.daggertestapp.R
-import com.indaco.daggertestapp.core.hilt.DebugAllOpen
-import com.indaco.daggertestapp.databinding.ActivityTestingBinding
-import com.indaco.daggertestapp.ui.base.Base
 import com.indaco.daggertestapp.data.model.User
+import com.indaco.daggertestapp.databinding.ActivityLoginBinding
+import com.indaco.daggertestapp.ui.base.BaseActivity
 import com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * + capture intent when going to another activity
  */
 @AndroidEntryPoint
-class LoginActivity : Base<ActivityTestingBinding>() {
+class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     private val viewModel: LoginViewModel by viewModels()
 
@@ -30,7 +29,7 @@ class LoginActivity : Base<ActivityTestingBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setBindingContentView(ActivityTestingBinding.inflate(layoutInflater))
+        setBindingContentView(ActivityLoginBinding.inflate(layoutInflater))
 
         init()
     }

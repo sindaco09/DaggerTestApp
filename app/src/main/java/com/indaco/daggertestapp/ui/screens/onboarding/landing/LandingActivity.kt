@@ -5,10 +5,10 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.databinding.ActivityLandingBinding
-import com.indaco.daggertestapp.ui.base.Base
+import com.indaco.daggertestapp.ui.base.BaseActivity
 import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.ui.screens.onboarding.login.LoginActivity
-import com.indaco.daggertestapp.ui.screens.onboarding.signup.SignUpActivity
+import com.indaco.daggertestapp.ui.screens.onboarding.signup.SignUpParentActivity
 import com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * + capture intent when going to another activity
  */
 @AndroidEntryPoint
-class LandingActivity : Base<ActivityLandingBinding>() {
+class LandingActivity : BaseActivity<ActivityLandingBinding>() {
 
     private val viewModel: LandingViewModel by viewModels()
 
@@ -65,7 +65,7 @@ class LandingActivity : Base<ActivityLandingBinding>() {
         }
 
     private fun goToSignUpScreen() =
-        startActivity(Intent(this, SignUpActivity::class.java))
+        startActivity(Intent(this, SignUpParentActivity::class.java))
 
     private fun goToLoginScreen() =
         startActivity(Intent(this,LoginActivity::class.java))

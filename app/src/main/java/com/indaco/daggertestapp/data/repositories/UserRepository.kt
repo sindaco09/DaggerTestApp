@@ -1,10 +1,10 @@
 package com.indaco.daggertestapp.data.repositories
 
-import com.indaco.daggertestapp.data.model.AuthForm
 import com.indaco.daggertestapp.data.storage.cache.UserCache
 import com.indaco.daggertestapp.data.model.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -13,12 +13,15 @@ class UserRepository @Inject constructor(private val userCache: UserCache) {
 
     val loggedInUser: User? get() = userCache.currentUser
 
-    fun login(authForm: AuthForm): Flow<User?> {
+    fun login(email: String, password: String): Flow<User?> {
         return flow {
-            val user = userCache.getUser(authForm.email)
+            val user = userCache.getUser(email)
             userCache.currentUser = user.also { emit(it) }
         }
     }
+
+    // Short-hand way of writting " return flow { emit(...) } "
+    fun isEmailInUse(email: String): Flow<Boolean> = flowOf(userCache.getUser(email) != null)
 
     fun register(user: User): Flow<User?> {
         return flow {
@@ -33,4 +36,7 @@ class UserRepository @Inject constructor(private val userCache: UserCache) {
     }
 
     fun getTestValue() = userCache.testValue
+
+
+
 }
