@@ -1,8 +1,6 @@
 package com.indaco.daggertestapp.ui.screens.onboarding.login
 
 import android.content.Intent
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.Observer
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -20,7 +18,6 @@ import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.data.storage.cache.UserCache
 import com.indaco.daggertestapp.hilt.lazyActivityScenarioRule
 import com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity
-import com.indaco.daggertestapp.util.Const
 import com.indaco.daggertestapp.util.Const.EMAIL_VALID
 import com.indaco.daggertestapp.util.Const.PASSWORD_VALID
 import dagger.hilt.android.testing.BindValue

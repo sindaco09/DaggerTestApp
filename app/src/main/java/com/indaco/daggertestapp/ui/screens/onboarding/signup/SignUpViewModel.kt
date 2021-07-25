@@ -1,6 +1,8 @@
 package com.indaco.daggertestapp.ui.screens.onboarding.signup
 
+import android.content.Context
 import androidx.lifecycle.*
+import androidx.test.core.app.ApplicationProvider
 import com.indaco.daggertestapp.App
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.data.model.AuthForm
@@ -19,7 +21,7 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
-): AndroidViewModel(App.instance) {
+): ViewModel() {
 
     enum class State {SHOW_EMAIL, SHOW_PASSWORD, SHOW_REGISTER_BUTTON}
 
@@ -48,7 +50,8 @@ class SignUpViewModel @Inject constructor(
                 if (!it)
                     authForm.email = email
 
-                _emailInUse.postValue(Pair(it, if (it) getApplication<App>().getString(R.string.error_email_in_use) else null))
+                val res = ApplicationProvider.getApplicationContext<Context>()
+                _emailInUse.postValue(Pair(it, if (it) res.getString(R.string.error_email_in_use) else null))
             }
         }
     }

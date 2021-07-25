@@ -20,7 +20,7 @@ class UserRepository @Inject constructor(private val userCache: UserCache) {
         }
     }
 
-    // Short-hand way of writting " return flow { emit(...) } "
+    // Short-hand way of writing " return flow { emit(...) } "
     fun isEmailInUse(email: String): Flow<Boolean> = flowOf(userCache.getUser(email) != null)
 
     fun register(user: User): Flow<User?> {
