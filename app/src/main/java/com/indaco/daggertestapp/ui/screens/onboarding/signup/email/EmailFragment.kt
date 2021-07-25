@@ -35,7 +35,7 @@ class EmailFragment: BaseFragment<FragmentEmailBinding>(R.layout.fragment_email)
 
         binding.email.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_NEXT && emailIsValid()) {
-                viewModel.checkIfEmailInUse(binding.email.text.toString())
+                viewModel.checkIfEmailInUse(binding.email.text.toString(), resources)
                 true
             } else
                 false

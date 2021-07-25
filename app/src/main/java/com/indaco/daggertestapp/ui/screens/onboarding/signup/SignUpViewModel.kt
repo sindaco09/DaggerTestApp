@@ -1,6 +1,7 @@
 package com.indaco.daggertestapp.ui.screens.onboarding.signup
 
 import android.content.Context
+import android.content.res.Resources
 import androidx.lifecycle.*
 import androidx.test.core.app.ApplicationProvider
 import com.indaco.daggertestapp.App
@@ -44,14 +45,14 @@ class SignUpViewModel @Inject constructor(
         }
     }
 
-    fun checkIfEmailInUse(email: String) {
+    fun checkIfEmailInUse(email: String, res: Resources) {
+        val emailInUseError = res.getString(R.string.error_email_in_use)
         viewModelScope.launch(dispatcher) {
             userRepository.isEmailInUse(email).collect {
                 if (!it)
                     authForm.email = email
 
-                val res = ApplicationProvider.getApplicationContext<Context>()
-                _emailInUse.postValue(Pair(it, if (it) res.getString(R.string.error_email_in_use) else null))
+                _emailInUse.postValue(Pair(it, if (it) emailInUseError else null))
             }
         }
     }

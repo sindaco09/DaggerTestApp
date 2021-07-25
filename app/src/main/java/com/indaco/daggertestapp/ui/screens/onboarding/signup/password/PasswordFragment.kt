@@ -26,12 +26,17 @@ class PasswordFragment: BaseFragment<FragmentPasswordBinding>(R.layout.fragment_
     }
 
     private fun init() {
-        binding.confirmPassword.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                submitPasswords()
-                true
-            } else
-                false
+        with(binding) {
+            password.setOnEditorActionListener { _, _, _ ->
+                !passwordLayout.inputIsValid(Validator.Type.PASSWORD)
+            }
+            confirmPassword.setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    submitPasswords()
+                    true
+                } else
+                    false
+            }
         }
     }
 
@@ -46,7 +51,12 @@ class PasswordFragment: BaseFragment<FragmentPasswordBinding>(R.layout.fragment_
     private fun fieldsAreValid(): Boolean {
         val isPasswordValid = binding.passwordLayout.inputIsValid(Validator.Type.PASSWORD)
         val isConfirmPasswordValid = binding.confirmPasswordLayout.inputIsValid(Validator.Type.PASSWORD)
-        val passwordsMatch = binding.confirmPasswordLayout.matches(Validator.Type.PASSWORD, binding.password.text.toString())
-        return isPasswordValid && isConfirmPasswordValid && passwordsMatch
+        return if (isPasswordValid && isConfirmPasswordValid)
+            binding.confirmPasswordLayout.matches(
+                Validator.Type.PASSWORD,
+                binding.password.text.toString()
+            )
+        else
+            false
     }
 }

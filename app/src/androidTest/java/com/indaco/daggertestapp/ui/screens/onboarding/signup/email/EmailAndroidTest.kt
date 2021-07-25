@@ -33,14 +33,12 @@ import kotlin.test.assertEquals
 @SmallTest
 class EmailAndroidTest {
 
-    companion object {
-        val EMAIL_VALID_ENTRY = Pair(Const.EMAIL_VALID, null)
-        val EMAIL_INVALID_ENTRY = Pair(Const.EMAIL_INVALID, R.string.error_email_not_email_pattern)
-        val EMAIL_BLANK_ENTRY = Pair(Const.BLANK, R.string.error_email_blank)
-    }
+    private val EMAIL_VALID_ENTRY = Pair(Const.EMAIL_VALID, null)
+    private val EMAIL_INVALID_ENTRY = Pair(Const.EMAIL_INVALID, R.string.error_email_not_email_pattern)
+    private val EMAIL_BLANK_ENTRY = Pair(Const.BLANK, R.string.error_email_blank)
 
     // allows access to values in res folder
-    var res: Resources = ApplicationProvider.getApplicationContext<Context>().resources
+    val res: Resources = ApplicationProvider.getApplicationContext<Context>().resources
 
     @BindValue
     @JvmField
@@ -81,7 +79,7 @@ class EmailAndroidTest {
     }
 
     fun emailErrorMessageTest(entry: Pair<String, Int?>) {
-        // Set-up: click on email field, enter invalid email, and press "Next" button on keyboard
+        // Set-up: click on email field, enter email input, and press "Next" button on keyboard
         onView(ViewMatchers.withId(R.id.email))
             .perform(typeText(entry.first))
             .perform(ViewActions.pressImeActionButton())
