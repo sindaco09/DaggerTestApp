@@ -78,14 +78,20 @@ dependencies {
     kaptAndroidTest "androidx.room:room-compiler:$room_version"
 
     implementation 'com.google.android.material:material:1.3.0'
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    // Retrofit
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // Testing
 
     // AndroidJUnitRunner and JUnit Rules
     androidTestImplementation('androidx.test:runner:1.3.0')

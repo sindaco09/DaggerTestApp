@@ -1,6 +1,6 @@
 package com.indaco.daggertestapp.data.storagecomponents
 
-import com.indaco.daggertestapp.core.hilt.modules.storagecomponents.CoroutineDispatcherModule
+import com.indaco.daggertestapp.core.hilt.modules.storage.components.CoroutineDispatcherModule
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent

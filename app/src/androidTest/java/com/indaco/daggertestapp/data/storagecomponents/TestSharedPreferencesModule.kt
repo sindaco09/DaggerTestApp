@@ -3,7 +3,7 @@ package com.indaco.daggertestapp.data.storagecomponents
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import com.indaco.daggertestapp.core.hilt.modules.storagecomponents.SharedPreferencesModule
+import com.indaco.daggertestapp.core.hilt.modules.storage.components.SharedPreferencesModule
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent

@@ -7,7 +7,7 @@ import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.filters.SmallTest
 import com.indaco.daggertestapp.R
-import com.indaco.daggertestapp.core.hilt.modules.CacheModule
+import com.indaco.daggertestapp.core.hilt.modules.storage.CacheModule
 import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.data.storage.cache.UserCache
 import com.indaco.daggertestapp.hilt.lazyActivityScenarioRule

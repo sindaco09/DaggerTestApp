@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.core.hilt.modules
+package com.indaco.daggertestapp.core.hilt.modules.storage
 
 import android.content.SharedPreferences
 import com.indaco.daggertestapp.core.hilt.DebugAllOpen

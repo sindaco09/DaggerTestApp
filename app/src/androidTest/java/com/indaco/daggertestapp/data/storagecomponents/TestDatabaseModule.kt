@@ -2,7 +2,7 @@ package com.indaco.daggertestapp.data.storagecomponents
 
 import android.app.Application
 import androidx.room.Room
-import com.indaco.daggertestapp.core.hilt.modules.storagecomponents.DatabaseModule
+import com.indaco.daggertestapp.core.hilt.modules.storage.components.DatabaseModule
 import com.indaco.daggertestapp.core.room.AppDatabase
 import dagger.Module
 import dagger.Provides

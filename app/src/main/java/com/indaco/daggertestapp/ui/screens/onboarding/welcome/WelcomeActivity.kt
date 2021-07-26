@@ -7,6 +7,7 @@ import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.databinding.ActivityWelcomeBinding
 import com.indaco.daggertestapp.ui.base.BaseActivity
+import com.indaco.daggertestapp.ui.screens.main.bart.BartActivity
 import com.indaco.daggertestapp.ui.screens.onboarding.landing.LandingActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,6 +34,12 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>() {
         setIntentData()
 
         binding.logout.setOnClickListener { logout() }
+
+        binding.proceed.setOnClickListener { proceed() }
+    }
+
+    private fun proceed() {
+        startActivity(Intent(this, BartActivity::class.java))
     }
 
     private fun setIntentData() {

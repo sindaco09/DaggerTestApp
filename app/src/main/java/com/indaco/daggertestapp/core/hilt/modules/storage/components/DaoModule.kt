@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.core.hilt.modules
+package com.indaco.daggertestapp.core.hilt.modules.storage.components
 
 import com.indaco.daggertestapp.core.hilt.DebugAllOpen
 import com.indaco.daggertestapp.core.room.AppDatabase
@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @DebugAllOpen
 @Module
 @InstallIn(SingletonComponent::class)
-class StorageModule {
+class DaoModule {
 
     @Provides
     @Singleton

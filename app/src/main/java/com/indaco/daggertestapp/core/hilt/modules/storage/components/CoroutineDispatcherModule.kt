@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.core.hilt.modules.storagecomponents
+package com.indaco.daggertestapp.core.hilt.modules.storage.components
 
 import com.indaco.daggertestapp.core.hilt.DebugAllOpen
 import dagger.Module
