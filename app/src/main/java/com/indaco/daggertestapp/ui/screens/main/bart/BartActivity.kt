@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.indaco.daggertestapp.R
+import com.indaco.daggertestapp.core.espresso.TestCountingIdlingResource
 import com.indaco.daggertestapp.data.model.bart.BartStation
 import com.indaco.daggertestapp.databinding.ActivityGitHubBinding
 import com.indaco.daggertestapp.ui.base.BaseActivity
@@ -39,6 +40,7 @@ class BartActivity : BaseActivity<ActivityGitHubBinding>() {
     }
 
     private fun setStations(stations: List<BartStation>?) {
+        hideProgress()
         if (stations == null)
             return
 
@@ -46,6 +48,7 @@ class BartActivity : BaseActivity<ActivityGitHubBinding>() {
     }
 
     private fun showError(error: String) {
+        hideProgress()
         AlertDialog.Builder(this)
             .setTitle(R.string.error_title)
             .setMessage(error)
@@ -53,7 +56,18 @@ class BartActivity : BaseActivity<ActivityGitHubBinding>() {
     }
 
     private fun fetchData() {
+        showProgress()
         viewModel.getStations()
+    }
+
+    private fun showProgress() {
+        // show progress layout
+        TestCountingIdlingResource.increment()
+    }
+
+    private fun hideProgress() {
+        // hide progress layout
+        TestCountingIdlingResource.decrement()
     }
 
 }

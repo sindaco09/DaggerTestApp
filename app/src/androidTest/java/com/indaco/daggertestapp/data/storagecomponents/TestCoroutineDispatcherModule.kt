@@ -16,15 +16,15 @@ import kotlinx.coroutines.test.TestCoroutineDispatcher
  * Question: is it better to test with the same dispatcher as the main app? would it work?
  * rules seem a bit different for UI tests vs actual app
  */
-@Module
-@TestInstallIn(
-    components = [SingletonComponent::class],
-    replaces = [CoroutineDispatcherModule::class]
-)
+//@Module
+//@TestInstallIn(
+//    components = [SingletonComponent::class],
+//    replaces = [CoroutineDispatcherModule::class]
+//)
 class TestCoroutineDispatcherModule {
 
-    @ExperimentalCoroutinesApi
-    @Provides
-    fun provideIoDispatcher(): CoroutineDispatcher = TestCoroutineDispatcher()
+//    @ExperimentalCoroutinesApi
+//    @Provides
+//    fun provideIoDispatcher(): CoroutineDispatcher = TestCoroutineDispatcher()
 
 }
