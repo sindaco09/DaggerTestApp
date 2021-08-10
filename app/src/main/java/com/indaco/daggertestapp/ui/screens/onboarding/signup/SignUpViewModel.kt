@@ -1,10 +1,10 @@
 package com.indaco.daggertestapp.ui.screens.onboarding.signup
 
-import android.content.Context
 import android.content.res.Resources
-import androidx.lifecycle.*
-import androidx.test.core.app.ApplicationProvider
-import com.indaco.daggertestapp.App
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.data.model.AuthForm
 import com.indaco.daggertestapp.data.model.User
@@ -26,14 +26,14 @@ class SignUpViewModel @Inject constructor(
 
     enum class State {SHOW_EMAIL, SHOW_PASSWORD, SHOW_REGISTER_BUTTON}
 
-    private val _state = MutableStateFlow(State.SHOW_EMAIL)
-    val state: StateFlow<State> get() = _state
+    private val _emailInUse = MutableLiveData<Pair<Boolean, String?>>()
+    val emailInUse: LiveData<Pair<Boolean, String?>> get() = _emailInUse
 
     private val _registerResult = MutableLiveData<User?>()
     val registerResult: LiveData<User?> get() = _registerResult
 
-    private val _emailInUse = MutableLiveData<Pair<Boolean, String?>>()
-    val emailInUse: LiveData<Pair<Boolean, String?>> get() = _emailInUse
+    private val _state = MutableStateFlow(State.SHOW_EMAIL)
+    val state: StateFlow<State> get() = _state
 
     private var authForm: AuthForm = AuthForm()
 

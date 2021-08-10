@@ -1,6 +1,6 @@
 package com.indaco.daggertestapp.data.repositories
 
-import com.indaco.daggertestapp.data.storage.cache.UserCache
+import com.indaco.daggertestapp.data.testmodules.storage.cache.UserCache
 import com.indaco.daggertestapp.data.model.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

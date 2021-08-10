@@ -1,6 +1,6 @@
 package com.indaco.daggertestapp.core.hilt.modules.network.components
 
-import com.indaco.daggertestapp.data.network.api.bart.BartService
+import com.indaco.daggertestapp.data.testmodules.network.api.bart.BartService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

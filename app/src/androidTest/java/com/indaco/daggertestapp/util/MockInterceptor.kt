@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.hilt
+package com.indaco.daggertestapp.util
 
 import android.util.Log
 import androidx.test.platform.app.InstrumentationRegistry
@@ -78,9 +78,9 @@ class MockInterceptor: Interceptor {
             val endpoint = _endpoint.split("/").last()
             Log.d("TAG","endpoint: $endpoint")
             println("STEFAN endpoint: $endpoint")
-            this.endpoint = endpoint
-            this.jsonFileName = if(_jsonFileName.contains(".json")) _jsonFileName else "$_jsonFileName.json"
-            this.code = code
+            Companion.endpoint = endpoint
+            jsonFileName = if(_jsonFileName.contains(".json")) _jsonFileName else "$_jsonFileName.json"
+            Companion.code = code
         }
     }
 }

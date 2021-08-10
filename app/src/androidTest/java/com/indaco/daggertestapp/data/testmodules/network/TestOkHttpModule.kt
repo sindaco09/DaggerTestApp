@@ -1,7 +1,7 @@
-package com.indaco.daggertestapp.data.network
+package com.indaco.daggertestapp.data.testmodules.network
 
 import com.indaco.daggertestapp.core.hilt.modules.network.components.OkHttpModule
-import com.indaco.daggertestapp.hilt.MockInterceptor
+import com.indaco.daggertestapp.util.MockInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent

@@ -15,7 +15,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.filters.SmallTest
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.espresso.TestCountingIdlingResource
-import com.indaco.daggertestapp.hilt.MockInterceptor
+import com.indaco.daggertestapp.util.MockInterceptor
 import com.indaco.daggertestapp.hilt.lazyActivityScenarioRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

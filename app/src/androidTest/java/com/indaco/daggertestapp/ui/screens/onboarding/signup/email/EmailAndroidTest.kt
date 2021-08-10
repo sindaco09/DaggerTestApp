@@ -14,7 +14,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.hilt.modules.storage.CacheModule
 import com.indaco.daggertestapp.data.model.User
-import com.indaco.daggertestapp.data.storage.cache.UserCache
+import com.indaco.daggertestapp.data.testmodules.storage.cache.UserCache
 import com.indaco.daggertestapp.hilt.launchFragmentInHiltContainer
 import com.indaco.daggertestapp.util.Const
 import dagger.hilt.android.testing.BindValue

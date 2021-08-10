@@ -9,7 +9,7 @@ import androidx.test.filters.SmallTest
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.hilt.modules.storage.CacheModule
 import com.indaco.daggertestapp.data.model.User
-import com.indaco.daggertestapp.data.storage.cache.UserCache
+import com.indaco.daggertestapp.data.testmodules.storage.cache.UserCache
 import com.indaco.daggertestapp.hilt.lazyActivityScenarioRule
 import com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity
 import com.indaco.daggertestapp.util.Const.EMAIL_VALID

@@ -1,13 +1,4 @@
-package com.indaco.daggertestapp.data.storagecomponents
-
-import com.indaco.daggertestapp.core.hilt.modules.storage.components.CoroutineDispatcherModule
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.components.SingletonComponent
-import dagger.hilt.testing.TestInstallIn
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestCoroutineDispatcher
+package com.indaco.daggertestapp.data.testmodules.storage
 
 /*
  * replace Dispatchers.IO with TestCoroutineDispatchers. use only a main and separate dispatchers
