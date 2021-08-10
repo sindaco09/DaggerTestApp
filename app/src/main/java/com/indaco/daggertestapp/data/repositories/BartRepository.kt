@@ -1,7 +1,7 @@
 package com.indaco.daggertestapp.data.repositories
 
 import com.indaco.daggertestapp.data.model.bart.BartStation
-import com.indaco.daggertestapp.data.testmodules.network.api.bart.BartApi
+import com.indaco.daggertestapp.data.network.api.bart.BartApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map

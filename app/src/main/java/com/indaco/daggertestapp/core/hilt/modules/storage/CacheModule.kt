@@ -2,8 +2,8 @@ package com.indaco.daggertestapp.core.hilt.modules.storage
 
 import android.content.SharedPreferences
 import com.indaco.daggertestapp.core.hilt.DebugAllOpen
-import com.indaco.daggertestapp.data.testmodules.storage.cache.UserCache
-import com.indaco.daggertestapp.data.testmodules.storage.dao.UserDao
+import com.indaco.daggertestapp.data.storage.cache.UserCache
+import com.indaco.daggertestapp.data.storage.dao.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

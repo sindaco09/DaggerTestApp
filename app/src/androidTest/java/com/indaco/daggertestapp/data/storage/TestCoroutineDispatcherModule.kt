@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.data.testmodules.storage
+package com.indaco.daggertestapp.data.storage
 
 /*
  * replace Dispatchers.IO with TestCoroutineDispatchers. use only a main and separate dispatchers

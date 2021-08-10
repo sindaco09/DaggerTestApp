@@ -1,6 +1,6 @@
-package com.indaco.daggertestapp.data.testmodules.network.api.bart
+package com.indaco.daggertestapp.data.network.api.bart
 
-import com.indaco.daggertestapp.data.testmodules.network.result.bart.GetStationsResult
+import com.indaco.daggertestapp.data.network.result.bart.GetStationsResult
 import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton

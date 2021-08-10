@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.data.testmodules.storage.dao
+package com.indaco.daggertestapp.data.storage.dao
 
 import androidx.room.Dao
 import androidx.room.Delete

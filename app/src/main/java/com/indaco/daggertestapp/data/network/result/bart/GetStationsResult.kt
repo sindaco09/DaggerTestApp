@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.data.testmodules.network.result.bart
+package com.indaco.daggertestapp.data.network.result.bart
 
 import com.indaco.daggertestapp.data.model.bart.BartStation
 

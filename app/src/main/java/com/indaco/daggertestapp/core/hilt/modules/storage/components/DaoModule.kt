@@ -2,7 +2,7 @@ package com.indaco.daggertestapp.core.hilt.modules.storage.components
 
 import com.indaco.daggertestapp.core.hilt.DebugAllOpen
 import com.indaco.daggertestapp.core.room.AppDatabase
-import com.indaco.daggertestapp.data.testmodules.storage.dao.UserDao
+import com.indaco.daggertestapp.data.storage.dao.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

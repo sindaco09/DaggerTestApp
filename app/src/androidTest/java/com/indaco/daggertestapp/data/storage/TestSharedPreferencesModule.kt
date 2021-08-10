@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.data.testmodules.storage
+package com.indaco.daggertestapp.data.storage
 
 import android.app.Application
 import android.content.Context

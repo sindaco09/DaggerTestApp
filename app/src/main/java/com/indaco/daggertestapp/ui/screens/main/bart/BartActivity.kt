@@ -2,27 +2,22 @@ package com.indaco.daggertestapp.ui.screens.main.bart
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.espresso.TestCountingIdlingResource
 import com.indaco.daggertestapp.data.model.bart.BartStation
-import com.indaco.daggertestapp.databinding.ActivityGitHubBinding
+import com.indaco.daggertestapp.databinding.ActivityBartBinding
 import com.indaco.daggertestapp.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BartActivity : BaseActivity<ActivityGitHubBinding>() {
+class BartActivity : BaseActivity<ActivityBartBinding>() {
 
     private val viewModel: BartViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setBindingContentView(ActivityGitHubBinding.inflate(layoutInflater))
+        setBindingContentView(ActivityBartBinding.inflate(layoutInflater))
 
         init()
     }
