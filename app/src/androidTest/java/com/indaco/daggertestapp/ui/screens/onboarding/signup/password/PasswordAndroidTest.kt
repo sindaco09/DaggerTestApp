@@ -28,6 +28,7 @@ import kotlin.test.assertEquals
 @SmallTest
 class PasswordAndroidTest {
 
+    // Represent the associated error with the entry: Pair<Entry, Error?>
     private val BLANK_PASSWORD = Pair(Const.BLANK, R.string.error_password_blank)
     private val SHORT_PASSWORD = Pair(Const.PASSWORD_SHORT, R.string.error_password_short)
     private val LONG_PASSWORD = Pair(Const.PASSWORD_LONG, R.string.error_password_long)

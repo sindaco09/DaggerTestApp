@@ -27,11 +27,9 @@ class LauncherActivityAndroidTest {
     @get: Rule(order = 1)
     val scenarioRule = lazyActivityScenarioRule<LauncherActivity>(launchActivity = false)
 
-    private fun launchHiltActivityWithMocks(launchActivity: Boolean = true, everyFunc: (() -> Unit)? = null) {
-        everyFunc?.invoke()
+    private fun launchHiltActivityWithMocks() {
         hiltRule.inject()
-        if (launchActivity)
-            scenarioRule.launch(intent)
+        scenarioRule.launch(intent)
     }
 
     @Before
@@ -43,7 +41,7 @@ class LauncherActivityAndroidTest {
     @Test
     fun goesToLandingScreen() {
         // says to launch activity now with given intent
-        launchHiltActivityWithMocks(true)
+        launchHiltActivityWithMocks()
 
         intended(hasComponent(LandingActivity::class.java.name))
     }
@@ -78,5 +76,4 @@ class LauncherActivityAndroidTest {
 //
 //        intended(hasComponent(EmptyActivity::class.java.name))
 //    }
-//
 //}
