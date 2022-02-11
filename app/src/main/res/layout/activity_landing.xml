@@ -29,6 +29,32 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/native_login"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:strokeColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@id/hilt_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:text="Native Login Module"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/hilt_login"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:strokeColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@id/login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="10dp"
+        android:text="Hilt Login Module"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/login"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:strokeColor="@color/colorPrimary"

@@ -62,6 +62,8 @@ class LandingActivity : BaseActivity<ActivityLandingBinding>() {
         with(binding) {
             login.setOnClickListener { goToLoginScreen() }
             signup.setOnClickListener { goToSignUpScreen() }
+            hiltLogin.setOnClickListener { goToHiltLoginActivity() }
+            nativeLogin.setOnClickListener { goToNativeLoginActivity() }
         }
 
     private fun goToSignUpScreen() =
@@ -70,4 +72,9 @@ class LandingActivity : BaseActivity<ActivityLandingBinding>() {
     private fun goToLoginScreen() =
         startActivity(Intent(this,LoginActivity::class.java))
 
+    private fun goToHiltLoginActivity() =
+        startActivity(Intent().setClassName(packageName,"com.indaco.login.ui.screens.login.hilt_login.HiltLoginActivity"))
+
+    private fun goToNativeLoginActivity() =
+        startActivity(Intent().setClassName(packageName,"com.indaco.login.ui.screens.login.native_login.NativeLoginActivity"))
 }
