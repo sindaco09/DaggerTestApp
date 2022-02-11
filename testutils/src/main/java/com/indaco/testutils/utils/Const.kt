@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.util
+package com.indaco.testutils.utils
 
 object Const {
     const val BLANK = ""

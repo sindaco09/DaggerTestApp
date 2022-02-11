@@ -12,7 +12,7 @@ import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.hilt.modules.storage.CacheModule
 import com.indaco.daggertestapp.data.storage.cache.UserCache
 import com.indaco.daggertestapp.hilt.launchFragmentInHiltContainer
-import com.indaco.daggertestapp.util.Const
+import com.indaco.testutils.utils.Const
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

@@ -18,8 +18,8 @@ import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.data.storage.cache.UserCache
 import com.indaco.daggertestapp.hilt.lazyActivityScenarioRule
 import com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity
-import com.indaco.daggertestapp.util.Const.EMAIL_VALID
-import com.indaco.daggertestapp.util.Const.PASSWORD_VALID
+import com.indaco.testutils.utils.Const.EMAIL_VALID
+import com.indaco.testutils.utils.Const.PASSWORD_VALID
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

@@ -1,3 +1,4 @@
 rootProject.name = "DaggerTestApp"
 include ':app'
 include ':login'
+include ':testutils'

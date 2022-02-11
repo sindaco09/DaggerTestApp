@@ -16,7 +16,7 @@ import com.indaco.daggertestapp.hilt.lazyActivityScenarioRule
 import com.indaco.daggertestapp.ui.screens.onboarding.signup.email.EmailFragment
 import com.indaco.daggertestapp.ui.screens.onboarding.signup.password.PasswordFragment
 import com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity
-import com.indaco.daggertestapp.util.Const
+import com.indaco.testutils.utils.Const
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

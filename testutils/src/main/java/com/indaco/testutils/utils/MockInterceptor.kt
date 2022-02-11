@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.util
+package com.indaco.testutils.utils
 
 import android.util.Log
 import androidx.test.platform.app.InstrumentationRegistry
