@@ -1,27 +1,17 @@
 package com.indaco.login.ui.screens.login.hilt_login
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.lifecycleScope
+import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.hilt.viewmodel.ViewModelFactory
 import com.indaco.daggertestapp.data.model.User
-import com.indaco.login.databinding.ActivityHiltLoginBinding
 import com.indaco.daggertestapp.ui.base.BaseActivity
 import com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity
-import com.indaco.daggertestapp.R
-import com.indaco.daggertestapp.data.repositories.UserRepository
-import com.indaco.daggertestapp.data.storage.cache.UserSPCache
+import com.indaco.login.databinding.ActivityHiltLoginBinding
 import com.indaco.login.di.Injector
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /*
@@ -33,7 +23,8 @@ import javax.inject.Inject
 class HiltLoginActivity : BaseActivity<ActivityHiltLoginBinding>() {
 
     @Inject
-    lateinit var userSPCache: UserSPCache
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel: HiltLoginViewModel by viewModels { viewModelFactory }
 
     companion object {
         private const val MIN = 3
@@ -50,6 +41,8 @@ class HiltLoginActivity : BaseActivity<ActivityHiltLoginBinding>() {
 
     private fun init() {
         initViews()
+
+        observeData()
     }
 
     private fun initViews() {
@@ -58,7 +51,7 @@ class HiltLoginActivity : BaseActivity<ActivityHiltLoginBinding>() {
             val password = binding.password.text.toString()
 
             if (fieldsAreValid(email, password))
-                login(email)
+                login(email, password)
         }
     }
 
@@ -94,26 +87,27 @@ class HiltLoginActivity : BaseActivity<ActivityHiltLoginBinding>() {
         return error == null
     }
 
-    private fun login(enteredEmail: String) {
-        val email = userSPCache.email
-        when {
-            enteredEmail == email -> displayResult("emails match!: $email")
-            email != null -> {
-                userSPCache.email = enteredEmail
-                displayResult("found email: $email")
-            }
-            else -> {
-                userSPCache.email = enteredEmail
-                displayResult("no email found")
-            }
+    private fun login(email: String, password: String) {
+        viewModel.login(email, password)
+    }
+
+    private fun observeData() {
+        viewModel.loginResult.observe(this) {
+            if (it != null)
+                goToMainScreen(it)
+            else
+                showError()
         }
     }
 
-    private fun displayMessage(message: String) =
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-
-    private fun displayResult(message: String) {
-        binding.result.text = message
+    private fun showError() {
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.error_title))
+            .setMessage(getString(R.string.user_not_found))
+            .setPositiveButton(getString(R.string.ok), null)
+            .show()
     }
 
+    private fun goToMainScreen(user: User) =
+        startActivity(Intent(this, WelcomeActivity::class.java).putExtra(User.KEY, user))
 }

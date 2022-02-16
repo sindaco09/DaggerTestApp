@@ -12,8 +12,9 @@ import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth
-import com.indaco.daggertestapp.core.hilt.modules.storage.UserSPModule
-import com.indaco.daggertestapp.data.storage.cache.UserSPCache
+import com.indaco.daggertestapp.core.hilt.modules.storage.CacheModule
+import com.indaco.daggertestapp.data.model.User
+import com.indaco.daggertestapp.data.storage.cache.UserCache
 import com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity
 import com.indaco.login.R
 import com.indaco.testutils.hilt.lazyActivityScenarioRule
@@ -29,10 +30,9 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.lang.Thread.sleep
 import com.indaco.daggertestapp.R as StringR
 
-@UninstallModules(UserSPModule::class)
+@UninstallModules(CacheModule::class)
 @HiltAndroidTest
 @SmallTest
 class HiltLoginActivityAndroidTest {
@@ -41,7 +41,7 @@ class HiltLoginActivityAndroidTest {
 
     @BindValue
     @JvmField
-    var userSPCache: UserSPCache = mockk(relaxed = true)
+    var mockUserCache: UserCache = mockk(relaxed = true)
 
     @get: Rule(order = 0)
     val hiltRule = HiltAndroidRule(this)
@@ -75,7 +75,6 @@ class HiltLoginActivityAndroidTest {
                 email.setText(EMAIL_VALID)
                 password.setText("")
 
-                sleep(4000)
                 submit.performClick()
 
                 Truth.assertThat(passwordLayout.error.toString())
@@ -89,9 +88,7 @@ class HiltLoginActivityAndroidTest {
 
     @Test
     fun invalid_login_credentials() {
-        launchHiltActivityWithMocks {
-//            every { mockUserCache.getUser(EMAIL_VALID) } returns null
-        }
+        launchHiltActivityWithMocks { every { mockUserCache.getUser(EMAIL_VALID) } returns null }
 
         // setup test
         onView(withId(R.id.email))
@@ -110,9 +107,7 @@ class HiltLoginActivityAndroidTest {
 
     @Test
     fun valid_login_credentials() {
-        launchHiltActivityWithMocks {
-//            every { mockUserCache.getUser(EMAIL_VALID) } returns User(EMAIL_VALID)
-        }
+        launchHiltActivityWithMocks { every { mockUserCache.getUser(EMAIL_VALID) } returns User(EMAIL_VALID) }
 
         // setup test
         onView(withId(R.id.email))
@@ -124,26 +119,5 @@ class HiltLoginActivityAndroidTest {
 
         // Check that WelcomeActivity is started
         Intents.intended(IntentMatchers.hasComponent(WelcomeActivity::class.java.name))
-    }
-
-    @Test
-    fun valid_login_credentials_scenario() {
-        launchHiltActivityWithMocks {
-            every { userSPCache.email } returns null
-        }
-
-        // setup test
-        onView(withId(R.id.email))
-            .perform(typeText(EMAIL_VALID))
-        onView(withId(R.id.password))
-            .perform(typeText(PASSWORD_VALID))
-        onView(withId(R.id.submit))
-            .perform(click())
-
-        onView(withId(R.id.result))
-            .check(matches(withText("no email found")))
-
-        // Check that WelcomeActivity is started
-//        Intents.intended(IntentMatchers.hasComponent(WelcomeActivity::class.java.name))
     }
 }
