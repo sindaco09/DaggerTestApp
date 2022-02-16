@@ -1,10 +1,9 @@
-package com.indaco.daggertestapp.hilt
+package com.indaco.testutils.hilt
 
 import android.app.Application
 import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
 import dagger.hilt.android.testing.CustomTestApplication
-import dagger.hilt.android.testing.HiltTestApplication
 
 // This class is being used in gradle file, don't delete!
 @CustomTestApplication(TestApp::class)

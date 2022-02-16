@@ -14,7 +14,8 @@
         android:theme="@style/Theme.DaggerTestApp">
         <activity android:name=".ui.screens.main.bart.BartActivity" />
         <activity android:name=".ui.screens.onboarding.signup.SignUpParentActivity" />
-        <activity android:name=".ui.screens.onboarding.launcher.LauncherActivity">
+        <activity android:name=".ui.screens.onboarding.launcher.LauncherActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

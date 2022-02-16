@@ -11,11 +11,12 @@ import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.filters.SmallTest
 import com.google.android.material.textfield.TextInputLayout
+import com.indaco.daggertestapp.HiltTestActivity
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.hilt.modules.storage.CacheModule
 import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.data.storage.cache.UserCache
-import com.indaco.daggertestapp.hilt.launchFragmentInHiltContainer
+import com.indaco.testutils.hilt.launchFragmentInHiltContainer
 import com.indaco.testutils.utils.Const
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -56,7 +57,7 @@ class EmailAndroidTest {
     fun email_blank_error_message() {
         // Can't launch fragment in regular container since it's annotated by Hilt
         // @AndroidEntryPoint, the host Activity needs to be @AndroidEntryPoint too
-        launchFragmentInHiltContainer<EmailFragment>()
+        launchFragmentInHiltContainer<EmailFragment, HiltTestActivity>()
 
         emailErrorMessageTest(EMAIL_BLANK_ENTRY)
     }
@@ -65,7 +66,7 @@ class EmailAndroidTest {
     fun email_invalid_error_message() {
         // tell userCache to just null if this function is called (don't execute function)
         every { mockUserCache.getUser(EMAIL_INVALID_ENTRY.first) } returns null
-        launchFragmentInHiltContainer<EmailFragment>()
+        launchFragmentInHiltContainer<EmailFragment, HiltTestActivity>()
 
         emailErrorMessageTest(EMAIL_INVALID_ENTRY)
     }
@@ -73,7 +74,7 @@ class EmailAndroidTest {
     @Test
     fun email_valid_no_error_message() {
         every { mockUserCache.getUser(EMAIL_VALID_ENTRY.first) } returns null
-        launchFragmentInHiltContainer<EmailFragment>()
+        launchFragmentInHiltContainer<EmailFragment, HiltTestActivity>()
 
         emailErrorMessageTest(EMAIL_VALID_ENTRY)
     }
@@ -97,7 +98,7 @@ class EmailAndroidTest {
     fun email_in_use_dialog_displayed() {
         val email = EMAIL_VALID_ENTRY.first
         every { mockUserCache.getUser(email) } returns User(email)
-        launchFragmentInHiltContainer<EmailFragment>()
+        launchFragmentInHiltContainer<EmailFragment, HiltTestActivity>()
 
         onView(ViewMatchers.withId(R.id.email))
             .perform(typeText(email))

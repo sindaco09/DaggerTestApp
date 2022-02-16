@@ -8,10 +8,11 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.filters.SmallTest
 import com.google.android.material.textfield.TextInputLayout
+import com.indaco.daggertestapp.HiltTestActivity
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.hilt.modules.storage.CacheModule
 import com.indaco.daggertestapp.data.storage.cache.UserCache
-import com.indaco.daggertestapp.hilt.launchFragmentInHiltContainer
+import com.indaco.testutils.hilt.launchFragmentInHiltContainer
 import com.indaco.testutils.utils.Const
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -48,7 +49,7 @@ class PasswordAndroidTest {
     @Before
     fun setUp() {
         hiltRule.inject()
-        launchFragmentInHiltContainer<PasswordFragment>()
+        launchFragmentInHiltContainer<PasswordFragment, HiltTestActivity>()
     }
 
     // Test Password field alone

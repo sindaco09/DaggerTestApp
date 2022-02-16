@@ -1,4 +1,4 @@
-package com.indaco.daggertestapp.hilt
+package com.indaco.testutils.hilt
 
 import android.app.Application
 

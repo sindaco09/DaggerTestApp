@@ -12,7 +12,7 @@ import com.google.common.truth.Truth
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.hilt.modules.storage.CacheModule
 import com.indaco.daggertestapp.data.storage.cache.UserCache
-import com.indaco.daggertestapp.hilt.lazyActivityScenarioRule
+import com.indaco.testutils.hilt.lazyActivityScenarioRule
 import com.indaco.daggertestapp.ui.screens.onboarding.signup.email.EmailFragment
 import com.indaco.daggertestapp.ui.screens.onboarding.signup.password.PasswordFragment
 import com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity

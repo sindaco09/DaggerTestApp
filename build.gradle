@@ -1,10 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        espresso_version = '3.3.0'
-        kotlin_version = '1.5.10'
-        room_version = '2.3.0'
-        hilt_version = '2.37'
+        espresso_version = '3.4.0'
+        kotlin_version = '1.6.10'
+        room_version = '2.4.1'
+        hilt_version = '2.40.5'
     }
 
     repositories {
@@ -13,7 +13,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.2'
+        classpath 'com.android.tools.build:gradle:7.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
         classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"

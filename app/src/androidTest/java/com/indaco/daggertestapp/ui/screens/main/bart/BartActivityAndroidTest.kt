@@ -16,7 +16,7 @@ import androidx.test.filters.SmallTest
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.espresso.TestCountingIdlingResource
 import com.indaco.testutils.utils.MockInterceptor
-import com.indaco.daggertestapp.hilt.lazyActivityScenarioRule
+import com.indaco.testutils.hilt.lazyActivityScenarioRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.After

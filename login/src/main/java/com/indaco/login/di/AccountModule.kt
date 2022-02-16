@@ -11,15 +11,15 @@ import com.indaco.daggertestapp.core.hilt.viewmodel.ViewModelKey
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
-@InstallIn(SingletonComponent::class)
-@Module
+//@InstallIn(SingletonComponent::class)
+//@Module
 abstract class AccountModule {
 
-    @Binds
-    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(HiltLoginViewModel::class)
-    abstract fun provideRemoteLoginViewModel(viewmodel: HiltLoginViewModel): ViewModel
+//    @Binds
+//    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+//
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(HiltLoginViewModel::class)
+//    abstract fun provideRemoteLoginViewModel(viewmodel: HiltLoginViewModel): ViewModel
 }

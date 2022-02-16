@@ -10,7 +10,7 @@ import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.core.hilt.modules.storage.CacheModule
 import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.data.storage.cache.UserCache
-import com.indaco.daggertestapp.hilt.lazyActivityScenarioRule
+import com.indaco.testutils.hilt.lazyActivityScenarioRule
 import com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity
 import com.indaco.testutils.utils.Const.EMAIL_VALID
 import dagger.hilt.android.testing.BindValue

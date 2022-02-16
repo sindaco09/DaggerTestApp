@@ -22,7 +22,6 @@ class NativeLoginActivity : BaseActivity<ActivityNativeLoginBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Injector.inject(this)
         setBindingContentView(ActivityNativeLoginBinding.inflate(layoutInflater))
 
         init()
