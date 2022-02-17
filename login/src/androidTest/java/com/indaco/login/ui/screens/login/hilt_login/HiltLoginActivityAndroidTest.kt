@@ -1,6 +1,9 @@
 package com.indaco.login.ui.screens.login.hilt_login
 
 import android.content.Intent
+import android.util.Log
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -12,36 +15,49 @@ import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth
-import com.indaco.daggertestapp.core.hilt.modules.storage.CacheModule
+import com.indaco.daggertestapp.core.hilt.viewmodel.ViewModelFactory
+import com.indaco.daggertestapp.core.hilt.viewmodel.ViewModelKey
 import com.indaco.daggertestapp.data.model.User
+import com.indaco.daggertestapp.data.repositories.UserRepository
 import com.indaco.daggertestapp.data.storage.cache.UserCache
 import com.indaco.daggertestapp.ui.screens.onboarding.welcome.WelcomeActivity
 import com.indaco.login.R
+import com.indaco.login.di.AccountComponent
+import com.indaco.login.di.AccountModule
 import com.indaco.testutils.hilt.lazyActivityScenarioRule
+import com.indaco.testutils.utils.Const.EMAIL_INVALID
 import com.indaco.testutils.utils.Const.EMAIL_VALID
 import com.indaco.testutils.utils.Const.PASSWORD_VALID
-import dagger.hilt.android.testing.BindValue
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
+import dagger.hilt.components.SingletonComponent
+import dagger.hilt.testing.TestInstallIn
+import dagger.multibindings.IntoMap
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.mockkClass
+import kotlinx.coroutines.Dispatchers
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import com.indaco.daggertestapp.R as StringR
 
-@UninstallModules(CacheModule::class)
 @HiltAndroidTest
 @SmallTest
 class HiltLoginActivityAndroidTest {
 
     private val intent = Intent(ApplicationProvider.getApplicationContext(), HiltLoginActivity::class.java)
 
-    @BindValue
-    @JvmField
-    var mockUserCache: UserCache = mockk(relaxed = true)
+
+//    @BindValue
+//    @JvmField
+//    var mockUserCache: UserCache = mockk(relaxed = true)
+
 
     @get: Rule(order = 0)
     val hiltRule = HiltAndroidRule(this)
@@ -52,6 +68,7 @@ class HiltLoginActivityAndroidTest {
     @Before
     fun setup() {
         Intents.init()
+//        Injector.from().inject(this)
     }
 
     @After
@@ -88,11 +105,13 @@ class HiltLoginActivityAndroidTest {
 
     @Test
     fun invalid_login_credentials() {
-        launchHiltActivityWithMocks { every { mockUserCache.getUser(EMAIL_VALID) } returns null }
+        launchHiltActivityWithMocks {
+//            every { userCache.getUser(EMAIL_VALID) } returns null
+        }
 
         // setup test
         onView(withId(R.id.email))
-            .perform(typeText(EMAIL_VALID))
+            .perform(typeText(EMAIL_INVALID))
         onView(withId(R.id.password))
             .perform(typeText(PASSWORD_VALID))
         onView(withId(R.id.submit))
@@ -107,7 +126,9 @@ class HiltLoginActivityAndroidTest {
 
     @Test
     fun valid_login_credentials() {
-        launchHiltActivityWithMocks { every { mockUserCache.getUser(EMAIL_VALID) } returns User(EMAIL_VALID) }
+        launchHiltActivityWithMocks {
+//            every { userCache.getUser(EMAIL_VALID) } returns User(EMAIL_VALID)
+        }
 
         // setup test
         onView(withId(R.id.email))

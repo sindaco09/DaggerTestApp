@@ -8,18 +8,19 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import com.indaco.daggertestapp.core.hilt.viewmodel.ViewModelFactory
 import com.indaco.daggertestapp.core.hilt.viewmodel.ViewModelKey
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
 @InstallIn(SingletonComponent::class)
 @Module
-abstract class AccountModule {
+class AccountModule {
 
-    @Binds
-    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+    @Provides
+    fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory = factory
 
-    @Binds
+    @Provides
     @IntoMap
     @ViewModelKey(HiltLoginViewModel::class)
-    abstract fun provideHiltLoginViewModel(viewmodel: HiltLoginViewModel): ViewModel
+    fun provideHiltLoginViewModel(viewmodel: HiltLoginViewModel): ViewModel = viewmodel
 }

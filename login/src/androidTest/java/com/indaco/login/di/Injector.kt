@@ -1,18 +1,18 @@
 package com.indaco.login.di
 
 import android.app.Activity
-import android.content.Context
+import androidx.test.core.app.ApplicationProvider
 import com.indaco.daggertestapp.core.hilt.dependencies.AppDependencies
 import com.indaco.login.ui.screens.login.hilt_login.HiltLoginActivity
 import dagger.hilt.android.EntryPointAccessors
 
 object Injector {
-    fun from(context: Context): AccountComponent {
-        return DaggerAccountComponent
+    fun from(): TestAccountComponent {
+        return DaggerTestAccountComponent
             .builder()
             .appDependencies(
                 EntryPointAccessors.fromApplication(
-                    context.applicationContext,
+                    ApplicationProvider.getApplicationContext(),
                     AppDependencies::class.java
                 )
             )
@@ -22,7 +22,7 @@ object Injector {
     fun inject(activity: Activity) =
         with(activity) {
             when (this) {
-                is HiltLoginActivity -> from(this).inject(this)
+                is HiltLoginActivity -> from().inject(this)
             }
         }
 }
