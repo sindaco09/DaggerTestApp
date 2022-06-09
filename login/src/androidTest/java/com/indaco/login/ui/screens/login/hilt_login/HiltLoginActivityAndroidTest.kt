@@ -33,6 +33,10 @@ import org.junit.Rule
 import org.junit.Test
 import com.indaco.daggertestapp.R as StringR
 
+/**
+ * Uninstalling CacheModule doesn't work
+ * can i only uninstall modules in the appDependencies component?
+ */
 @UninstallModules(DaoModule::class)
 @HiltAndroidTest
 @SmallTest

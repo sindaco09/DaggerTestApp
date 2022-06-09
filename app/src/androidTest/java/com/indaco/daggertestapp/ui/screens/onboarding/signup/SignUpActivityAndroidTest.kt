@@ -3,6 +3,7 @@ package com.indaco.daggertestapp.ui.screens.onboarding.signup
 import android.content.Intent
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.matcher.IntentMatchers
@@ -10,6 +11,7 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth
 import com.indaco.daggertestapp.R
+import com.indaco.daggertestapp.core.espresso.TestCountingIdlingResource
 import com.indaco.daggertestapp.core.hilt.modules.storage.CacheModule
 import com.indaco.daggertestapp.data.storage.cache.UserCache
 import com.indaco.testutils.hilt.lazyActivityScenarioRule
@@ -53,10 +55,16 @@ class SignUpActivityAndroidTest {
     }
 
     @Before
-    fun setup() = Intents.init()
+    fun setup() {
+        IdlingRegistry.getInstance().register(TestCountingIdlingResource.countingIdlingResource)
+        Intents.init()
+    }
 
     @After
-    fun tearDown() = Intents.release()
+    fun tearDown() {
+        IdlingRegistry.getInstance().unregister(TestCountingIdlingResource.countingIdlingResource)
+        Intents.release()
+    }
 
     @Test
     fun emailFragment_active() {

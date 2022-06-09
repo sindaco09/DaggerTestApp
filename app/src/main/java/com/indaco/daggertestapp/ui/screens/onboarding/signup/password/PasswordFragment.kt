@@ -5,6 +5,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.activityViewModels
 import com.indaco.daggertestapp.R
+import com.indaco.daggertestapp.core.espresso.TestCountingIdlingResource
 import com.indaco.daggertestapp.databinding.FragmentPasswordBinding
 import com.indaco.daggertestapp.ui.base.BaseFragment
 import com.indaco.daggertestapp.ui.screens.onboarding.signup.SignUpViewModel

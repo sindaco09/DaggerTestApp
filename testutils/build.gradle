@@ -2,7 +2,6 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -44,16 +43,14 @@ dependencies {
     debugImplementation 'androidx.fragment:fragment-testing:1.4.1'
 
     // Core
-    implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
 
     // Hilt
-    implementation "com.google.dagger:hilt-android:$hilt_version"
     api "com.google.dagger:hilt-android-testing:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
 
-    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.4'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
 
     // Testing related libraries
 
@@ -62,17 +59,15 @@ dependencies {
     api "androidx.arch.core:core-testing:2.1.0"
 
     // AndroidJUnitRunner and JUnit Rules
-    api('androidx.test:runner:1.4.0')
-    api('androidx.test:rules:1.4.0')
+    api 'androidx.test:runner:1.4.0'
+    api 'androidx.test:rules:1.4.0'
 
     // Assertions
     api 'androidx.test.ext:junit:1.1.3'
     api "com.google.truth:truth:1.1.3"
 
     // Mockk
-//    api "io.mockk:mockk:1.12.0"
     api 'io.mockk:mockk-android:1.12.2'
-
 
     // Espresso
     api "androidx.test.espresso:espresso-idling-resource:$espresso_version"
@@ -80,13 +75,8 @@ dependencies {
     api "androidx.test.espresso:espresso-intents:$espresso_version"
 
     // Coroutines
-    api 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0-native-mt'
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0"
 
-    // Junit (jupiter = JUnit 5)
-//    api "org.junit.jupiter:junit-jupiter-api:5.7.1"
-//    api "org.junit.jupiter:junit-jupiter-params:5.7.1"
-//    runtimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.1"
-//    runtimeOnly "org.junit.vintage:junit-vintage-engine:5.7.1"
+    // Junit
     api "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-
 }

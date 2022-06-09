@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.indaco.daggertestapp.R
+import com.indaco.daggertestapp.core.espresso.TestCountingIdlingResource
 import com.indaco.daggertestapp.data.model.AuthForm
 import com.indaco.daggertestapp.data.model.User
 import com.indaco.daggertestapp.data.repositories.UserRepository
@@ -47,12 +48,15 @@ class SignUpViewModel @Inject constructor(
 
     fun checkIfEmailInUse(email: String, res: Resources) {
         val emailInUseError = res.getString(R.string.error_email_in_use)
+
+        TestCountingIdlingResource.countingIdlingResource.increment()
         viewModelScope.launch(dispatcher) {
             userRepository.isEmailInUse(email).collect {
                 if (!it)
                     authForm.email = email
 
                 _emailInUse.postValue(Pair(it, if (it) emailInUseError else null))
+                TestCountingIdlingResource.countingIdlingResource.decrement()
             }
         }
     }
