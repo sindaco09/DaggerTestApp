@@ -1,23 +1,24 @@
 package com.indaco.daggertestapp.ui.screens.widget
 
-import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.widget.RemoteViews
 import androidx.work.WorkManager
-import com.indaco.daggertestapp.R
-import com.indaco.daggertestapp.data.worker.widget.MyWidgetWorker
-import com.indaco.daggertestapp.data.worker.widget.MyWidgetWorker.Companion.WIDGET_PERIODIC_WORK
-import com.indaco.daggertestapp.data.worker.widget.MyWidgetWorker.Companion.WIDGET_UPDATE_WORK
+import com.indaco.daggertestapp.data.worker.widget.MyHiltWidgetWorker
 import com.indaco.daggertestapp.ui.screens.widget.MyWidgetUpdater.updateAppWidget
+import com.indaco.daggertestapp.util.widget.MyWorkerWidgetManager.WIDGET_PERIODIC_WORK
+import com.indaco.daggertestapp.util.widget.MyWorkerWidgetManager.WIDGET_UPDATE_WORK
+import com.indaco.daggertestapp.util.widget.MyWorkerWidgetManager.startPeriodicWidgetUpdates
+import com.indaco.daggertestapp.util.widget.MyWorkerWidgetManager.updateWidgetDataOnce
+import dagger.hilt.android.AndroidEntryPoint
 
 const val ACTION_UPDATE_MY_WIDGET = "ACTION_UPDATE_MY_WIDGET"
 const val EXTRA_WIDGET_ID = "EXTRA_WIDGET_ID"
 const val EXTRA_WIDGET_IDS = "EXTRA_WIDGET_IDS"
 
+@AndroidEntryPoint
 class MyWidget : AppWidgetProvider() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
@@ -30,7 +31,7 @@ class MyWidget : AppWidgetProvider() {
                     if (widgetIds?.first() == AppWidgetManager.INVALID_APPWIDGET_ID)
                         widgetIds = getWidgetIds(it)
 
-                    MyWidgetWorker.updateWidgetDataOnce(it.applicationContext, widgetIds)
+                    updateWidgetDataOnce<MyHiltWidgetWorker>(it.applicationContext, widgetIds)
                 }
             else -> super.onReceive(context, intent)
         }
@@ -45,7 +46,7 @@ class MyWidget : AppWidgetProvider() {
     }
 
     override fun onEnabled(context: Context) {
-        MyWidgetWorker.startPeriodicWidgetUpdates(context.applicationContext, getWidgetIds(context))
+        startPeriodicWidgetUpdates<MyHiltWidgetWorker>(context.applicationContext, getWidgetIds(context))
     }
 
     override fun onDisabled(context: Context) {

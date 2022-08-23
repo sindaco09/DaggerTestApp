@@ -98,6 +98,10 @@ dependencies {
     androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
 
+    // Hilt-Worker
+    implementation("androidx.hilt:hilt-work:1.0.0")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+
     // Espresso
     implementation "androidx.test.espresso:espresso-idling-resource:$espresso_version"
 
