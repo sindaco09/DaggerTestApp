@@ -3,20 +3,18 @@ package com.indaco.daggertestapp.ui.screens.onboarding.signup
 import android.content.Context
 import androidx.lifecycle.Observer
 import androidx.test.core.app.ApplicationProvider
-import com.google.common.truth.Truth
 import com.indaco.daggertestapp.R
 import com.indaco.daggertestapp.data.repositories.UserRepository
 import com.indaco.daggertestapp.utils.Const
 import com.indaco.daggertestapp.utils.InstantExecutorExtension
 import io.mockk.*
-import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.ArgumentCaptor
+
 
 /*
  * Testing using JUnit 5 instead of JUnit 4

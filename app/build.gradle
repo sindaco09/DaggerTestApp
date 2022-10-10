@@ -5,7 +5,6 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-allopen'
     id 'dagger.hilt.android.plugin'
-    id "de.mannodermaus.android-junit5"
 }
 
 allOpen {
@@ -24,6 +23,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner = "com.indaco.testutils.hilt.HiltTestRunner"
+//        testInstrumentationRunnerArgument("runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder")
     }
 
     buildTypes {
@@ -65,12 +65,13 @@ android {
 dependencies {
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
     androidTestImplementation project(":testutils")
+//    testImplementation project(":testUtils")
     debugApi 'androidx.test:core-ktx:1.4.0'
 
     // Core - Uncategorized
     implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation "androidx.core:core-ktx:$ktx_version"
     implementation 'androidx.fragment:fragment-ktx:1.5.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10"
@@ -95,14 +96,21 @@ dependencies {
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
-    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     // Hilt-Worker
-    implementation("androidx.hilt:hilt-work:1.0.0")
+    api("androidx.hilt:hilt-work:1.0.0")
     kapt("androidx.hilt:hilt-compiler:1.0.0")
 
     // Espresso
     implementation "androidx.test.espresso:espresso-idling-resource:$espresso_version"
+
+    // Junit
+//    testImplementation 'junit:junit:4.13.2'
+//    testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.1"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.7.1"
+//    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.1"
+//    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.7.1"
+//    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 
 }
