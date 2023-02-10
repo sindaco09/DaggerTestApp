@@ -12,13 +12,13 @@ allOpen {
 }
 
 android {
-    compileSdk 32
-    buildToolsVersion '32.0.0'
+    compileSdk 33
+    buildToolsVersion '33.0.1'
 
     defaultConfig {
         applicationId "com.indaco.daggertestapp"
         minSdkVersion 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -49,13 +49,13 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
+
     packagingOptions {
-        jniLibs {
-            excludes += ['META-INF/licenses/**']
-        }
-        resources {
-            excludes += ['**/attach_hotspot_windows.dll', 'META-INF/AL2.0', 'META-INF/LGPL2.1', 'META-INF/licenses/**', 'META-INF/LICENSE']
-        }
+        exclude "**/attach_hotspot_windows.dll"
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/licenses/**'
+        exclude 'META-INF/LICENSE'
     }
 
 
@@ -66,18 +66,17 @@ dependencies {
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
     androidTestImplementation project(":testutils")
 //    testImplementation project(":testUtils")
-    debugApi 'androidx.test:core-ktx:1.4.0'
+    debugApi 'androidx.test:core-ktx:1.5.0'
 
     // Core - Uncategorized
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation "androidx.appcompat:appcompat:$app_compat_version"
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation "androidx.core:core-ktx:$ktx_version"
-    implementation 'androidx.fragment:fragment-ktx:1.5.2'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10"
+    implementation 'androidx.fragment:fragment-ktx:1.5.5'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.0"
 
     // Lifecycle
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.5.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha01'
@@ -108,7 +107,7 @@ dependencies {
     // Junit
 //    testImplementation 'junit:junit:4.13.2'
 //    testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.1"
-    testImplementation "org.junit.jupiter:junit-jupiter-params:5.7.1"
+//    testImplementation "org.junit.jupiter:junit-jupiter-params:5.9.2"
 //    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.1"
 //    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.7.1"
 //    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"

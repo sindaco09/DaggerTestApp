@@ -28,7 +28,7 @@ inline fun <reified T : Fragment, reified C: AppCompatActivity> launchFragmentIn
 
     ActivityScenario.launch<C>(startActivityIntent).onActivity { activity ->
         val fragment: Fragment = activity.supportFragmentManager.fragmentFactory.instantiate(
-            Preconditions.checkNotNull(T::class.java.classLoader),
+            Preconditions.checkNotNull(T::class.java.classLoader) as ClassLoader,
             T::class.java.name
         )
         fragment.arguments = fragmentArgs
